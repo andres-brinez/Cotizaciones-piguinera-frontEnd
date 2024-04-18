@@ -30,7 +30,7 @@ const Registro = () => {
 
         <button className="registro__button" type="submit">Registrarse</button>
       </form>
-      <Link to='login'>
+      <Link to='/login'>
         <button>Inicia sesión</button>
       </Link>   
     </>
