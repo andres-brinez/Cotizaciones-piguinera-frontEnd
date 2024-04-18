@@ -13,6 +13,12 @@ export function NavigationBar() {
                 <li>
                 <Link className='header__link' to='/addBook'>Add Book</Link> 
                 </li>
+                <li>
+                    <Link className='header__link' to='/home'>Home</Link>
+                </li>
+                <li>
+                    <Link className='header__link' to='/login'>Salir</Link>
+                </li>
             </ul>
         </nav>
     );
