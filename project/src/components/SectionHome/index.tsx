@@ -1,14 +1,16 @@
-import { ReactElement} from "react";
+import { ReactElement, useContext} from "react";
 import { useBooks } from "../../hooks/useBooks";
+import { AppContext } from "../../state/AppContext";
 
 
 export function Home(): ReactElement {
 
   const {books, isLoading} = useBooks();
+   const { state } = useContext(AppContext);
 
   return (
     <div>
-      <h1>Bienvenido al Home</h1>
+      <h1>Bienvenido al Home {state.email}</h1>
       {isLoading ? (
         <p>Cargando...</p>
       ) : (
