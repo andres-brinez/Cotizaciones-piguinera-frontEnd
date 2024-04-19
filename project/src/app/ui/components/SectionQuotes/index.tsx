@@ -23,7 +23,7 @@ export function SectionQuotes(): ReactElement {
         setBooksbooksAvailable(state.books);
     }, []);
 
-  
+
     const handleAddBook = () => {
         if (!idSelectedBook || !quantityBook || quantityBook == "0") {
             Swal.fire({
@@ -67,16 +67,23 @@ export function SectionQuotes(): ReactElement {
                 <button className='sectionQuotes__button' type='submit'>Cotizar</button>
             </form>
 
-            <h2>Libros seleccionados</h2>
-            <ul>
-                {selectedBooks.map((book) => (
-                    <li key={book.Id}>
-                        {book.Title} (ID: {book.Id}, Cantidad: {book.Quantity})
-                    </li>
-                ))}
-            </ul>
+            {selectedBooks.length > 0 && (
+                <article>
+                    <h2>Libros seleccionados</h2>
+                    <ul>
+                        {selectedBooks.map((book) => (
+                            <li key={book.Id}>
+                                {book.Title}
+                            </li>
+                        ))}
 
-            <table>
+                    </ul>
+                </article>
+            )}
+
+            {response && (
+
+                <table>
                 <thead>
                     <tr>
                         <th>Título</th>
@@ -99,10 +106,15 @@ export function SectionQuotes(): ReactElement {
                         </tr>
                     ))}
                 </tbody>
+                <tfoot>Precio Total: {response && response.totalPrice}</tfoot>
+                <tfoot>Tipo de Compra: {response && response.typePurchase}</tfoot>
+                <tfoot>Cantidad de Libros: {response && response.countBook}</tfoot>
             </table>
-            <p>Precio Total: {response && response.totalPrice}</p>
-            <p>Tipo de Compra: {response && response.typePurchase}</p>
-            <p>Cantidad de Libros: {response && response.countBook}</p>
+                
+                )}
+
+
+
         </section>
 
 

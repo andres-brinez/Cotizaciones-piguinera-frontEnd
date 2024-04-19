@@ -49,73 +49,93 @@ export function SectionBudget(): ReactElement {
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
-        const bookId = selectedBooks.map(book => book.Id);
-        const bookQuantity = quantityBudget;
-        setBooksBudget({ IdBooks: bookId, Budget: parseInt(bookQuantity) });
+        if (quantityBudget === "" || quantityBudget === "0") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Por favor, seleccione una cantidad válida.'
+            });
+        }
+        else {
+            const bookId = selectedBooks.map(book => book.Id);
+            const bookQuantity = quantityBudget;
+            setBooksBudget({ IdBooks: bookId, Budget: parseInt(bookQuantity) });
 
-        if (booksBudget !== undefined) {
-            const isGetBuget = budget(booksBudget);
-            if(await isGetBuget){
-                setSelectedBooks([]);
+            if (booksBudget !== undefined) {
+                const isGetBuget = budget(booksBudget);
+                if (await isGetBuget) {
+                    setSelectedBooks([]);
+                }
             }
+
         }
 
     }
 
-return (
-    <section className='sectionBudget'>
-        <h2 className='sectionBudget__title'>Presupuesto</h2>
-        <div className='sectionBudget__content'>
-            <div className='sectionBudget__form'>
-                <form className='sectionBudget__form' onSubmit={handleSubmit}>
-                    <label className='sectionBudget__label' htmlFor='book'>Libro</label>
-                    <select className='sectionBudget__input' id='book' name='book' value={idSelectedBook} onChange={(e) => idSetSelectedBook(e.target.value)}>
-                        <option value="">Seleccionar</option>
-                        {booksAvailable.map((book: IBookModel) => (
-                            <option key={book.Id} value={book.Id}>{book.Title}</option>
-                        ))}
-                    </select>
-                    <label className='sectionQuotes__label' htmlFor='quantity'>Presupuesto</label>
-                    <input className='sectionQuotes__input' type='number' id='quantity' name='quantity' value={quantityBudget} onChange={(e) => setQuantityBudget(e.target.value)} />
-                    <button className='sectionQuotes__button' type='button' onClick={handleAddBook}>Agregar Libro</button>
-                    <button className='sectionQuotes__button' type='submit'>Cotizar</button>
-                </form>
-            </div>
-            <h2>Libros seleccionados</h2>
-            <ul>
-                {selectedBooks.map((book) => (
-                    <li key={book.Id}>
-                        {book.Title}
-                    </li>
-                ))}
-            </ul>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Tipo</th>
-                        <th>Precio Unitario</th>
-                        <th>Cantidad</th>
-                        <th>Precio Total</th>
-                        <th>Descuento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {response && response.books.map((book: any) => (
-                        <tr key={book.title}>
-                            <td>{book.title}</td>
-                            <td>{book.type}</td>
-                            <td>{book.unitPrice}</td>
-                            <td>{book.cuantity}</td>
-                            <td>{book.totalPrice}</td>
-                            <td>{book.discount}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <p>Presupuestos: {response && quantityBudget}</p>
+    return (
+        <section className='sectionBudget'>
+            <h2 className='sectionBudget__title'>Presupuesto</h2>
+            <div className='sectionBudget__content'>
+                <div className='sectionBudget__form'>
+                    <form className='sectionBudget__form' onSubmit={handleSubmit}>
+                        <label className='sectionBudget__label' htmlFor='book'>Libro</label>
+                        <select className='sectionBudget__input' id='book' name='book' value={idSelectedBook} onChange={(e) => idSetSelectedBook(e.target.value)}>
+                            <option value="">Seleccionar</option>
+                            {booksAvailable.map((book: IBookModel) => (
+                                <option key={book.Id} value={book.Id}>{book.Title}</option>
+                            ))}
+                        </select>
+                        <label className='sectionQuotes__label' htmlFor='quantity'>Presupuesto</label>
+                        <input className='sectionQuotes__input' type='number' id='quantity' name='quantity' value={quantityBudget}  onChange={(e) => setQuantityBudget(e.target.value)} />
+                        <button className='sectionQuotes__button' type='button' onClick={handleAddBook}>Agregar Libro</button>
+                        <button className='sectionQuotes__button' type='submit' >Cotizar</button>
+                    </form>
+                </div>
 
-        </div>
-    </section>
-);
+                {selectedBooks.length > 0 && (
+                    <article>
+                        <h2>Libros seleccionados</h2>
+                        <ul>
+                            {selectedBooks.map((book) => (
+                                <li key={book.Id}>
+                                    {book.Title}
+                                </li>
+                            ))}
+
+                        </ul>
+                    </article>
+                )}
+
+
+                {response && (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Tipo</th>
+                                <th>Precio Unitario</th>
+                                <th>Cantidad</th>
+                                <th>Precio Total</th>
+                                <th>Descuento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {response && response.books.map((book: any) => (
+                                <tr key={book.title}>
+                                    <td>{book.title}</td>
+                                    <td>{book.type}</td>
+                                    <td>{book.unitPrice}</td>
+                                    <td>{book.cuantity}</td>
+                                    <td>{book.totalPrice}</td>
+                                    <td>{book.discount}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                        <tfoot>Presupuestos: {response && quantityBudget}</tfoot>
+                    </table>
+                )}
+
+            </div>
+        </section>
+    );
 }
