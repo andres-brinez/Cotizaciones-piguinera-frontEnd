@@ -4,7 +4,7 @@ import { getBooksService } from "../core/services/books.service";
 import { AppContext } from "../state/AppContext";
 
 export const useBooks = ()=>{
-  const[books,setBooks] = useState<IBookModel[]>([]);
+  const[,setBooks] = useState<IBookModel[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const {state,dispatch} = useContext(AppContext);
 
