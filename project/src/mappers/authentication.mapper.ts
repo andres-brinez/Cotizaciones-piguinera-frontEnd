@@ -11,9 +11,10 @@ export default {
   },
   toApiRegister: (credentials: IUserCredentialsRegister): unknown => {
     return {
-      userName: credentials.userName,
-      email: credentials.email,
-      password: credentials.password
+      Password: credentials.Password,
+      Email: credentials.Email,
+      userName: credentials.Email
+
     }
   },
 
