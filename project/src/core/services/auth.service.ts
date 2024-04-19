@@ -13,7 +13,7 @@ export const authServiceLogin = (credentials: IUserCredentials): Promise<boolean
     .then((response) => {
       const storage = new StorageService();
       storage.set('TOKEN', response.token);
-      return(response.token);
+      return Boolean(response.token);
     });
 }
 
