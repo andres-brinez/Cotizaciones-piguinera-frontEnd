@@ -6,6 +6,7 @@ import { Layout } from './layouts'
 import { SectionBook } from './components/SectionBook'
 import { SectionBudget } from './components/SectionBudget'
 import { SectionQuotes } from './components/SectionQuotes'
+import { Home } from './components/SectionHome'
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
     Component: Layout,
     children: [
       // El  componente de element es lo que se renderiza en el outlet
+      { path: 'home', element: <Home/> },
       { path: 'addBook', element: <SectionBook /> },
       { path: 'budget', element: <SectionBudget /> },
       { path: 'quotes', element: <SectionQuotes /> },
