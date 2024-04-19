@@ -4,7 +4,7 @@ import { urls } from "../env/url.resource";
 import http from "./general/http.service";
 import { StorageService } from "./general/storage.service";
 
-export const authServiceLogin = (credentials: IUserCredentials): Promise<boolean> => {
+export const authServiceLogin = (credentials: IUserCredentials): Promise<string> => {
   const url = urls.login;
   const body = authenticationMapper.toApiLogin(credentials);
 
@@ -13,7 +13,7 @@ export const authServiceLogin = (credentials: IUserCredentials): Promise<boolean
     .then((response) => {
       const storage = new StorageService();
       storage.set('TOKEN', response.token);
-      return Boolean(response.token);
+      return response.token;
     });
 }
 
