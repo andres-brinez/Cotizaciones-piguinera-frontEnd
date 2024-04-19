@@ -1,31 +1,9 @@
 #root{
     display: flex;
     height: 100vh;
-    font-family: Poppins;
-
 }
 
-
-nav{
-  border: solid 1px red ;
-  width: 15dvw;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-}
-
-nav  ul{
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-nav ul li{
-  padding: 10px;
-  margin: 10px;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  cursor: pointer;
-}
+main {
+    margin-left: 20vw; /* Ajusta este valor al ancho de tu barra de navegación */
+    padding: 20px;
+  }
