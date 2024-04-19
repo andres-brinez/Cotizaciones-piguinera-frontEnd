@@ -24,7 +24,6 @@ export default {
       Quantity: informationBook.Quantity,
       Type: Number(informationBook.Type)
 
-
     }
   }
 
