@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
+import { useRegister } from '../../hooks/useRegisterUser';
 // import { Header } from '../Header';
 
 const Registro = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const {register,errorMessage } = useRegister();
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    alert(`¡Hola ${name}!`);
-    // Aquí se envia la información a la API
-  };
+
+    register(email, password,name);
+
+ };
 
   return (
     <>
@@ -27,6 +30,8 @@ const Registro = () => {
 
         <label className="registro__label" htmlFor="password">Contraseña:</label>
         <input className="registro__input" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+
+        {errorMessage && <p className="registro__error">{errorMessage}</p>}
 
         <button className="registro__button" type="submit">Registrarse</button>
       </form>
