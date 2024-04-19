@@ -1,23 +1,10 @@
-import { ReactElement, useEffect, useState } from "react";
-import { getBooksService } from "../../core/services/books.service";
-import { IBookModel } from "../../models/book.model";
+import { ReactElement} from "react";
+import { useBooks } from "../../hooks/useBooks";
+
 
 export function Home(): ReactElement {
 
-  const[books,setBooks] = useState<IBookModel[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    getBooksService().then((response) => {
-      console.log('response desde el homepage')
-      console.log(response)
-      if (response) {
-        setBooks(response);
-      }
-      setIsLoading(false);
-    });
-  }, []);
+  const {books, isLoading} = useBooks();
 
   return (
     <div>

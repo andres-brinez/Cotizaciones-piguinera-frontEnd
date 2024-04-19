@@ -1,28 +1,18 @@
 import React, { useState } from 'react';
 import './style.css';
-import { Link, useNavigate } from 'react-router-dom';
-import { authServiceLogin } from '../../core/services/auth.service';
-// import { Header } from '../Header';
+import { useAuthLogin } from '../../hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState<string>('');
-
-  const navigateTo = useNavigate();
+  const { authenticate, errorMessage } = useAuthLogin();
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
+
     event.preventDefault();
-    setErrorMessage('');
+    authenticate(email, password);
 
-    authServiceLogin({ Email: email, password: password }).then((response) => {
-      if (response) {
-        navigateTo('/home');
-
-      } else {
-        setErrorMessage('Las credenciales proporcionadas son incorrectas.');
-      } 
-    })
   }
 
   return (
@@ -30,12 +20,12 @@ const Login = () => {
       <h2 className='subtitle'> Loguear</h2>
       <form className="login" onSubmit={handleSubmit}>
         <fieldset>
-        <legend className="login__legend">Iniciar sesión ingresa tus credenciales</legend>
-        <label className="login__label" htmlFor="email">Correo electrónico:</label>
-        <input className="login__input" type="email" name='userEmail' id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <legend className="login__legend">Iniciar sesión ingresa tus credenciales</legend>
+          <label className="login__label" htmlFor="email">Correo electrónico:</label>
+          <input className="login__input" type="email" name='userEmail' id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
-        <label className="login__label" htmlFor="password">Contraseña:</label>
-        <input className="login__input" type="password" name='userPassword' id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <label className="login__label" htmlFor="password">Contraseña:</label>
+          <input className="login__input" type="password" name='userPassword' id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
         </fieldset>
 
