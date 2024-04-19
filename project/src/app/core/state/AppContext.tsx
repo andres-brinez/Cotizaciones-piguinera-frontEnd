@@ -13,7 +13,7 @@ export const initialState: IState = {
 
 interface IState {
   isUserLogged: boolean;
-  email:string;
+  email: string;
   books: IBookModel[];
 }
 

@@ -1,5 +1,5 @@
-import { IBookModel } from "../../models/book.model";
-import { urls } from "../env/url.resource";
+import { IBookModel } from "../models/book.model";
+import { urls } from "../resources/url.resource";
 import http from "./general/http.service";
 
 

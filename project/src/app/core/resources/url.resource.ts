@@ -1,4 +1,4 @@
-import { environment } from "./environment";
+import { environment } from '../../../environment/environment';
 
 export const urls = {
   registerUser: `${environment.apiUrl}/auth/register`,

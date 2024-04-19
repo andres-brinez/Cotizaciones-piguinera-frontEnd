@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { Link, useNavigate, } from 'react-router-dom';
 import { AppContext } from "../../state/AppContext";
 import { StorageService } from "../../core/services/general/storage.service";
+import { IItemMenu } from "../../../core/models/item-menu.model";
+import { ItemMenu } from "../../elements/ItemMenu";
 
 export function NavigationBar() {
 
@@ -20,21 +22,33 @@ export function NavigationBar() {
 
     };
 
+    const menuItems: IItemMenu[] = [
+        {
+            text: 'Presupuesto',
+            url: '/budget'
+        },
+        {
+            text: 'Cotizacion',
+            url: '/quotes'
+        },
+        {
+            text: 'Add Book',
+            url: '//addBookervices'
+        },
+        {
+            text: 'Home',
+            url: '/home'
+        }
+    ];
+
     return (
         <nav className='header__nav'>
-            <ul>
-                <li>
-                    <Link className='header__link' to='/budget'>Presupuesto</Link>
-                </li>
-                <li>
-                    <Link className='header__link' to='/quotes'>Cotizacion</Link>
-                </li>
-                <li>
-                    <Link className='header__link' to='/addBook'>Add Book</Link>
-                </li>
-                <li>
-                    <Link className='header__link' to='/home'>Home</Link>
-                </li>
+            <ul className='header__menu'>
+                {
+                    menuItems.map((item) => (
+                        <ItemMenu key={item.text} text={item.text} url={item.url} />
+                    ))
+                }
                 <li>
                     <a onClick={handleLogout}>Cerrar sesión</a>
                 </li>
