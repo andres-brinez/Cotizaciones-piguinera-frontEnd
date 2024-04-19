@@ -1,3 +1,4 @@
+import { IBookInformation } from "../models/book-information";
 import { IBookModel } from "../models/book.model";
 
 export default {
@@ -12,7 +13,22 @@ export default {
       UnitPrice: book.UnitPrice,
       Discount: book.Discount
     };
+  },
+
+  toApiBookAdd : (informationBook: IBookInformation): unknown => {
+    return {
+      Id: informationBook.Id,
+      EmailProvider: informationBook.EmailProvider,
+      Title: informationBook.Title,
+      OriginalPrice: informationBook.OriginalPrice,
+      Quantity: informationBook.Quantity,
+      Type: Number(informationBook.Type)
+
+
+    }
   }
+
 }
+
 // Lo convierte a lo que recibe el API de registro
 // ApiTo

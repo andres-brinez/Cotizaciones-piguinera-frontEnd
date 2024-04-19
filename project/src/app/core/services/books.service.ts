@@ -1,3 +1,5 @@
+import bookMapper from "../mappers/book.mapper";
+import { IBookInformation } from "../models/book-information";
 import { IBookModel } from "../models/book.model";
 import { urls } from "../resources/url.resource";
 import http from "./general/http.service";
@@ -10,7 +12,7 @@ export const getBooksService = (): Promise<IBookModel[]> => {
       if (response.status === 200) {
         return response.json();
       } else {
-        alert('Error al obtener los libros');
+        console.log('Error al obtener los libros');
       }
     })
     .then((data) => {
@@ -30,6 +32,32 @@ export const getBooksService = (): Promise<IBookModel[]> => {
         });
       } else {
         throw new Error('La respuesta de la API no es un array');
+      }
+    });
+}
+
+export const addBookService = (bookInformation: IBookInformation): Promise<IBookModel> => {
+  
+  const url = urls.addBook;
+  const body = bookMapper.toApiBookAdd(bookInformation);
+  return http.post(url, body)
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        throw new Error('Error al agregar el libro'); 
+      }
+    })
+    .then((data) => {
+      return {
+        Id: data.id,
+        Title: data.title,
+        EmailProvider: data.emailProvider,
+        OriginalPrice: data.originalPrice,
+        Quantity: data.quantity,
+        Type: data.type,
+        UnitPrice: data.unitPrice,
+        Discount: data.discount
       }
     });
 }
