@@ -1,14 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { authServiceLogin } from "../core/services/auth.service";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../state/AppContext";
 
 export const useAuthLogin = () => {
 
   const navigateTo = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const {dispatch} = useContext(AppContext);
 
   const authenticate = (email: string, password: string) => authServiceLogin({ Email: email, password: password }).then((response) => {
     if (response) {
+      dispatch({ type: 'USER_LOGGED' });
       navigateTo('/home');
 
     } else {

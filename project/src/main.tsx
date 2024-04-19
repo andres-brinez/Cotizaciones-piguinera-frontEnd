@@ -7,6 +7,7 @@ import { SectionBook } from './components/SectionBook'
 import { SectionBudget } from './components/SectionBudget'
 import { SectionQuotes } from './components/SectionQuotes'
 import { Home } from './components/SectionHome'
+import { AppProvider } from './state/AppContext'
 
 const router = createBrowserRouter([
   {
@@ -14,20 +15,20 @@ const router = createBrowserRouter([
     Component: Layout,
     children: [
       // El  componente de element es lo que se renderiza en el outlet
-      { path: 'home', element: <Home/> },
+      { path: 'home', element: <Home /> },
       { path: 'addBook', element: <SectionBook /> },
       { path: 'budget', element: <SectionBudget /> },
       { path: 'quotes', element: <SectionQuotes /> },
     ],
   },
-  
- {
+
+  {
     path: 'register',
-    element:<Registro />,
-  }, 
+    element: <Registro />,
+  },
   {
     path: 'login',
-    element:<Login />,
+    element: <Login />,
   },
 
 
@@ -35,6 +36,9 @@ const router = createBrowserRouter([
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  
+
+  <AppProvider>
     <RouterProvider router={router} />
+  </AppProvider>
+
 )

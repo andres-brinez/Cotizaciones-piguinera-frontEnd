@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IBookModel } from "../models/book.model";
 import { getBooksService } from "../core/services/books.service";
+import { AppContext } from "../state/AppContext";
 
 export const useBooks = ()=>{
   const[books,setBooks] = useState<IBookModel[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const {state,dispatch} = useContext(AppContext);
 
   useEffect(() => {
     setIsLoading(true);
@@ -13,9 +15,10 @@ export const useBooks = ()=>{
       console.log(response)
       if (response) {
         setBooks(response);
+        dispatch({ type: 'BOOKS_GOTTEN', payload: response });
       }
       setIsLoading(false);
     });
   }, []);
-  return {books,isLoading}
+  return {books:state.books,isLoading}
 }
