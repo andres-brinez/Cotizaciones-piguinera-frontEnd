@@ -10,7 +10,7 @@ export const getBooksService = (): Promise<IBookModel[]> => {
       if (response.status === 200) {
         return response.json();
       } else {
-        alert('no estas autorizado')
+        alert('Error al obtener los libros');
       }
     })
     .then((data) => {
