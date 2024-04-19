@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
 import { useAuthLogin } from '../../../core/hooks/useAuth';
@@ -9,34 +9,32 @@ const Login = () => {
   const { authenticate, errorMessage } = useAuthLogin();
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
-
     event.preventDefault();
     authenticate(email, password);
-
   }
 
   return (
     <>
-      <h2 className='subtitle'> Loguear</h2>
-      <form className="login" onSubmit={handleSubmit}>
-        <fieldset>
-          <legend className="login__legend">Iniciar sesión ingresa tus credenciales</legend>
-          <label className="login__label" htmlFor="email">Correo electrónico:</label>
-          <input className="login__input" type="email" name='userEmail' id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      <main className='auth'>
+        <form className="auth__form" onSubmit={handleSubmit}>
+          <fieldset className="auth__fieldset">
+            <legend className="auth__legend">Iniciar sesión</legend>
+            <label className="auth__label" htmlFor="email">Correo electrónico</label>
+            <input className="auth__input" type="email" name='userEmail' id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
-          <label className="login__label" htmlFor="password">Contraseña:</label>
-          <input className="login__input" type="password" name='userPassword' id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <label className="auth__label" htmlFor="password">Contraseña</label>
+            <input className="auth__input" type="password" name='userPassword' id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          </fieldset>
 
-        </fieldset>
+          {/* si el error existe */}
+          <button className="auth__button" type="submit">Iniciar sesión</button>
+          {errorMessage && <p className="auth__error">{errorMessage}</p>}
+          <p>¿No tienes una cuenta? <Link to='/register' className="auth__register-link">Regístrate</Link></p>
 
-        {/* si el erro existe */}
-        {errorMessage && <p className="login__error">{errorMessage}</p>}
+        </form>
+      </main>
 
-        <button className="login__button" type="submit">Iniciar sesión</button>
-      </form>
-      <Link to='/register'>
-        <button>Regístrate</button>
-      </Link>    </>
+    </>
   );
 };
 
