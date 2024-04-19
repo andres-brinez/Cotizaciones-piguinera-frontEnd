@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
-import { useRegister } from '../../hooks/useRegisterUser';
+import { useRegister } from '../../../core/hooks/useRegisterUser';
 // import { Header } from '../Header';
 
 const Registro = () => {

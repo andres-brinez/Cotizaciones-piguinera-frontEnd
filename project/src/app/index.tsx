@@ -4,8 +4,6 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/router';
 import { AppProvider } from './core/state/AppContext';
 
-// import { router } from './routes/router';
-// import { AppProvider } from './core/state/AppContext';
 export const App = (): ReactElement => {
   return (
     <AppProvider>

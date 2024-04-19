@@ -1,6 +1,6 @@
 import { ReactElement, useContext} from "react";
-import { useBooks } from "../../hooks/useBooks";
-import { AppContext } from "../../state/AppContext";
+import { useBooks } from "../../../core/hooks/useBooks";
+import { AppContext } from "../../../core/state/AppContext";
 
 
 export function Home(): ReactElement {
