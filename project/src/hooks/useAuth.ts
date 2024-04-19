@@ -18,7 +18,6 @@ export const useAuthLogin = () => {
       const decodedToken = jwtDecode(token) as { [key: string]: any };
       const email = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/userdata'];      
       dispatch({ type: 'USER_LOGGED', payload: email });
-
       navigateTo('/home');
     } else {
       setErrorMessage('Las credenciales proporcionadas son incorrectas.');
