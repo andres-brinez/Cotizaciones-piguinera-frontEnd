@@ -23,13 +23,9 @@ export function SectionQuotes(): ReactElement {
         setBooksbooksAvailable(state.books);
     }, []);
 
-    //llama el console despues de que se actualiza la lista de libros
-    useEffect(() => {
-        console.log(booksQuotes);
-    }, [booksQuotes]);
-
+  
     const handleAddBook = () => {
-        if (!idSelectedBook || !quantityBook || idSelectedBook == "0") {
+        if (!idSelectedBook || !quantityBook || quantityBook == "0") {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
