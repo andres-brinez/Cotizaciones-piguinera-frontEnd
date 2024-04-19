@@ -15,7 +15,8 @@ export default {
       email: credentials.email,
       password: credentials.password
     }
-  }
+  },
+
 };
 
 // Lo convierte a lo que recibe el API de registro
