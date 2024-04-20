@@ -1,0 +1,33 @@
+
+.home__book-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.home__book-table th,
+.home__book-table td {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+}
+
+.home__book-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
+.home__book-table tr:not(:first-child):hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.home__book-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  /*   background-color: #053c7f;
+ */
+  color: black;
+
+}
