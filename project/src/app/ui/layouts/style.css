@@ -1,12 +1,23 @@
-#root{
+#root {
     display: flex;
     height: 100vh;
 }
 
 main.layout {
-    margin-left: 15vw; 
+    margin-left: 15vw;
     width: 85dvw;
-    padding:10px 50px 200px;
+    padding: 20px 50px 200px;
+}
 
+.header {
+    margin-bottom: 0px;
 
-  }
+}
+
+.header__title {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: #e64168;
+
+}
