@@ -8,7 +8,7 @@ export const Layout=():ReactElement=>{
   return (
     <>
     <NavigationBar/>
-        <main>
+        <main className="layout">
             {/* Aquí se renderizarán los componentes */}
             <Outlet>
             </Outlet>
