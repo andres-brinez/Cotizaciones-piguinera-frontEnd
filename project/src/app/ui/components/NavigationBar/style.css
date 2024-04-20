@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 15vw;
+  width: 16vw;
   height: 100vh;
   background-color: #121212;
   border-right: 1px solid #e7e7e7;
@@ -34,29 +34,15 @@
 }
 
 .navbar__item {
-  /* padding: 10px;
-  margin: 10px; */
   border-radius: 8px;
   cursor: pointer;
-  width: 155px;
+  width: 168px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 7px 0px;
+  padding: 8px 0px;
   margin-top: 25px;
   transition: all 0.5s;
-}
-
-.navbar__item:hover,.navbar__item--active
-{
-  background-color: #FF698D;
-}
-.navbar__item:hover a,
-.navbar__item:hover svg,
-.navbar__item--active .item-menu a,
-.navbar__item--active svg {
-  fill:#fff;
-  color: #fff;
 }
 
 
@@ -69,18 +55,32 @@
 .navbar__item a {
   color:#757575 ;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   display: inline-block;
   width: 80%;
   margin-right: 10px;
 
 }
 
+.navbar__item:hover,.navbar__item--active
+{
+  background-color: #3674b6; 
+}
+.navbar__item:hover a,
+.navbar__item:hover svg,
+.navbar__item--active .item-menu a,
+.navbar__item--active svg {
+  fill:#fff;
+  color: #fff;
+  font-size: 18px;
+}
+
+
 .navbar__link {
   color: #fff;
   font-size: 18px;
   display: inline-block;
-  background-color: #df1b49;
+  background-color: #0d447e; 
   padding: 10px 20px;
   border-radius: 13px;
   cursor: pointer;
@@ -88,8 +88,5 @@
 }
 
 .navbar__link:hover {
-  background-color: #e64168;
-}
-
-.navbar__link,.navbar__item a:hover {
+  background-color: #004999; 
 }
