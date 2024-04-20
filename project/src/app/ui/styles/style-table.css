@@ -1,28 +1,28 @@
 
-.home__book-table {
+.table {
   width: 100%;
   border-collapse: collapse;
   font-size: 16px;
 }
 
-.home__book-table th,
-.home__book-table td {
+.table th,
+.table td {
   border: 1px solid #ddd;
   padding: 15px;
   text-align: center;
 }
 
-.home__book-table tr:nth-child(even) {
+.table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
 
-.home__book-table tr:not(:first-child):hover {
+.table tr:not(:first-child):hover {
   background-color: #ddd;
   cursor: pointer;
 }
 
-.home__book-table th {
+.table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
@@ -30,4 +30,29 @@
  */
   color: black;
 
+}
+tfoot  {
+  margin: 50px 0 ;
+  display: flex;
+  text-align:center;
+
+}
+
+tfoot tr {
+  background-color: #f9f9f9;
+}
+
+tfoot td {
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+tfoot ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+tfoot li {
+  padding: 5px 0;
 }
