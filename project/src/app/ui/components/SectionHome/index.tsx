@@ -11,26 +11,26 @@ export function Home(): ReactElement {
 
   return (
     <section className="home">
-      <header className="home__header">
-        <h1 className="home__title">Bienvenido al Home {state.email}</h1>
+      <header className="home__header header">
+        <h1 className="header__title">Bienvenido {state.email}</h1>
       </header>
       <nav className="home__actions">
         <ul>
           <li>
-            <ItemMenu key="addBook" text="Añadir libro" url="/addBook" />
+            <ItemMenu key="addBook"  text="Añadir libro" url="/addBook" />
           </li>
-          <li>
+         {/*  <li>
             <a href="#" className="home__button home__button--edit">Editar</a>
           </li>
           <li>
             <a href="#" className="home__button home__button--delete">Eliminar</a>
-            </li>
+            </li> */}
         </ul>
       </nav>
       {isLoading ? (
         <p className="home__loading">Cargando...</p>
       ) : (
-        <table className="home__book-table">
+        <table className="home__book-table table">
           <thead>
             <tr>
               <th>
