@@ -3,7 +3,10 @@
     height: 100vh;
 }
 
-main {
-    margin-left: 20vw; /* Ajusta este valor al ancho de tu barra de navegación */
-    padding: 20px;
+main.layout {
+    margin-left: 15vw; 
+    width: 85dvw;
+    padding:10px 50px 200px;
+
+
   }
