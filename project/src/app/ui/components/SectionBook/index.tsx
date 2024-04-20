@@ -1,5 +1,6 @@
-import { ReactElement, useState } from "react";
-import { useBookAdd } from "../../../core/hooks/useAddBooks";
+import { ReactElement, useState } from 'react';
+import { useBookAdd } from '../../../core/hooks/useAddBooks';
+import './style.css';
 
 export function SectionBook(): ReactElement {
     const [id, setId] = useState('');
@@ -8,13 +9,13 @@ export function SectionBook(): ReactElement {
     const [quantity, setQuantity] = useState('');
     const [type, setType] = useState('0');
 
-    const { addBook,} = useBookAdd();
+    const { addBook, } = useBookAdd();
 
 
     const handleSubmit = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        const isSaveBook= addBook(id, title, originalPrice, quantity, type );
-        if( await isSaveBook){
+        const isSaveBook = addBook(id, title, originalPrice, quantity, type);
+        if (await isSaveBook) {
             setId('');
             setTitle('');
             setOriginalPrice('');
@@ -25,9 +26,10 @@ export function SectionBook(): ReactElement {
 
     return (
         <section className='addBook'>
-            <h2 className='addBook__title'>Agregar Libro</h2>
+            <header className="home__header header">
+                <h2 className='addBook__title header__title'>Agregar Libro</h2>
+            </header>
             <form className='addBook__form' onSubmit={handleSubmit}>
-
                 <fieldset>
                     <label className='addBook__label' htmlFor='id'>ID del libro</label>
                     <input className='addBook__input' type='text' id='id' name='id' value={id} onChange={(e) => setId(e.target.value)} />
