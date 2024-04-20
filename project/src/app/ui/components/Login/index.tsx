@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
 import { useAuthLogin } from '../../../core/hooks/useAuth';
+import img from '../../../../assets/libro.jpg';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,7 +16,8 @@ const Login = () => {
 
   return (
     <>
-      <main className='auth'>
+      <main className='auth authLogin'>
+        <img src={img} alt="Biblioteca" className="auth__image" />
         <form className="auth__form" onSubmit={handleSubmit}>
           <fieldset className="auth__fieldset">
             <legend className="auth__legend">Iniciar sesión</legend>
