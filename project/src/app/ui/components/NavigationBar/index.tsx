@@ -18,10 +18,7 @@ export function NavigationBar() {
             text: 'Cotizacion',
             url: '/quotes'
         },
-        {
-            text: 'Add Book',
-            url: '/addBook'
-        },
+        
         {
             text: 'Home',
             url: '/home'
@@ -30,6 +27,7 @@ export function NavigationBar() {
 
     return (
         <nav className='navbar'>
+            <h2 className='navbar__header'>La Pinguinera</h2>
             <ul className='navbar__menu'>
                 {
                     menuItems.map((item) => (
