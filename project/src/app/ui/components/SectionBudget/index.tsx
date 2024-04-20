@@ -4,6 +4,7 @@ import { IBudgetInformation } from "../../../core/models/budget-information";
 import { AppContext } from "../../../core/state/AppContext";
 import Swal from "sweetalert2";
 import { useCalculateQuotes } from "../../../core/hooks/useCalculateBudget";
+import './style.css'
 
 export function SectionBudget(): ReactElement {
 
@@ -74,43 +75,55 @@ export function SectionBudget(): ReactElement {
 
     return (
         <section className='sectionBudget'>
-            <h2 className='sectionBudget__title'>Presupuesto</h2>
-            <div className='sectionBudget__content'>
-                <div className='sectionBudget__form'>
-                    <form className='sectionBudget__form' onSubmit={handleSubmit}>
-                        <label className='sectionBudget__label' htmlFor='book'>Libro</label>
-                        <select className='sectionBudget__input' id='book' name='book' value={idSelectedBook} onChange={(e) => idSetSelectedBook(e.target.value)}>
+            <header className="home__header header">
+                <h2 className='sectionQuotes__title header__title'>Presupuesto</h2>
+            </header>
+            <article className="select__books">
+                {selectedBooks.length > 0 && (
+                    <article className="selected-books__article">
+                        <h2 className="selected-books__title">Libros seleccionados</h2>
+                        <ul className="selected-books__list">
+                            {selectedBooks.map((book) => (
+                                <li key={book.Id} className="selected-books__item">
+                                    {book.Title}
+                                </li>
+                            ))}
+                        </ul>
+                    </article>
+                )}
+
+                <form className='form' onSubmit={handleSubmit}>
+                    <fieldset className='form__group'>
+                        <label className='form__label' htmlFor='book'>Libro</label>
+                        <select className='form__input' id='book' name='book' value={idSelectedBook} onChange={(e) => idSetSelectedBook(e.target.value)}>
                             <option value="">Seleccionar</option>
                             {booksAvailable.map((book: IBookModel) => (
                                 <option key={book.Id} value={book.Id}>{book.Title}</option>
                             ))}
                         </select>
-                        <label className='sectionQuotes__label' htmlFor='quantity'>Presupuesto</label>
-                        <input className='sectionQuotes__input' type='number' id='quantity' name='quantity' value={quantityBudget}  onChange={(e) => setQuantityBudget(e.target.value)} />
-                        <button className='sectionQuotes__button' type='button' onClick={handleAddBook}>Agregar Libro</button>
-                        <button className='sectionQuotes__button' type='submit' >Cotizar</button>
-                    </form>
-                </div>
+                    </fieldset>
 
-                {selectedBooks.length > 0 && (
-                    <article>
-                        <h2>Libros seleccionados</h2>
-                        <ul>
-                            {selectedBooks.map((book) => (
-                                <li key={book.Id}>
-                                    {book.Title}
-                                </li>
-                            ))}
-
-                        </ul>
-                    </article>
-                )}
+                    <fieldset className='form__group'>
+                        <label className='form__label' htmlFor='quantity'>Presupuesto</label>
+                        <input className='form__input' type='number' id='quantity' name='quantity' value={quantityBudget} onChange={(e) => setQuantityBudget(e.target.value)} />
+                    </fieldset>
 
 
-                {response && (
-                    <table>
+                    <nav className='form__actions'>
+                        <button className='form__button form__button--add' type='button' onClick={handleAddBook}>Agregar Libro</button>
+                        <button className='form__button form__button--other' type='submit'>Realizar presupuesto</button>
+                    </nav>                
+                </form>
+            </article>
+
+
+            {response && (
+                <article className="result__budget">
+                    <h2>Resultado presupuesto</h2>
+
+                    <table className="table">
                         <thead>
-                            <tr>
+                        <tr>
                                 <th>Título</th>
                                 <th>Tipo</th>
                                 <th>Precio Unitario</th>
@@ -123,7 +136,7 @@ export function SectionBudget(): ReactElement {
                             {response && response.books.map((book: any) => (
                                 <tr key={book.title}>
                                     <td>{book.title}</td>
-                                    <td>{book.type}</td>
+                                    <td>{book.Type === 0 ? 'Libro' : 'Novela'}</td>
                                     <td>{book.unitPrice}</td>
                                     <td>{book.cuantity}</td>
                                     <td>{book.totalPrice}</td>
@@ -131,11 +144,12 @@ export function SectionBudget(): ReactElement {
                                 </tr>
                             ))}
                         </tbody>
-                        <tfoot>Presupuestos: {response && quantityBudget}</tfoot>
+                        <tfoot>Presupuesto: {response && quantityBudget}</tfoot>
                     </table>
-                )}
+                </article>
+            )}
 
-            </div>
+
         </section>
     );
 }

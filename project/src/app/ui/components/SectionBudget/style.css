@@ -1,0 +1,6 @@
+@import '../../../ui//styles/style-select-book.css';
+@import '../../../ui/styles/style-table.css';
+
+.result__budget h2{
+  color:#e64168;
+}
