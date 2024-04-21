@@ -32,6 +32,11 @@
   border-bottom: 1px solid #ddd;
 }
 
+input:focus,select:focus {
+  outline: none;
+  border-color: #FF698D;
+}
+
 .selected-books__item:last-child {
   border-bottom: none;
 }
