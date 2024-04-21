@@ -1,17 +1,16 @@
 import { useLogout } from '../../../core/hooks/useLogout';
 import { IItemMenu } from '../../../core/models/item-menu.model';
 import { ItemMenu } from '../../elements/ItemMenu';
-import img from '../../../../assets/Pingüinera .png';
 import { useLocation } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 import './style.css';
-import { ReactSVG } from 'react-svg';
+import img from '../../../../assets/Pingüinera .png';
 
 export function NavigationBar() {
 
     const logout = useLogout();
     const location = useLocation();
-
 
     const menuItems: IItemMenu[] = [
         {
@@ -28,7 +27,7 @@ export function NavigationBar() {
         },
 
         {
-            text: 'Home',
+            text: 'Inicio',
             url: '/home',
             imgSrc: 'src/assets/Home.svg'
 
@@ -42,16 +41,16 @@ export function NavigationBar() {
                 {
                     menuItems.map((item) => (
                         <li className={`navbar__item ${location.pathname === item.url ? 'navbar__item--active' : ''}`} key={item.text}>
-                        {item.imgSrc && <ReactSVG src={item.imgSrc} className="navbar__item-img" />}
+                            {item.imgSrc && <ReactSVG src={item.imgSrc} className="navbar__item-img" />}
                             <ItemMenu text={item.text} url={item.url} />
                         </li>
                     ))
                 }
 
             </ul>
-            <footer className='navbar__logout'>
+
                 <a className='navbar__link' onClick={logout}>Cerrar sesión</a>
-            </footer>
         </nav>
+
     );
 }
