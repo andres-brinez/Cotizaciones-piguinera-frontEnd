@@ -42,7 +42,7 @@ export function SectionBook(): ReactElement {
             <header className="home__header header">
                 <h2 className='addBook__title header__title'>Agregar Libro</h2>
             </header>
-            <form className='addBook__form' onSubmit={handleSubmit}>
+            <form className='form' onSubmit={handleSubmit}>
 
                 <FormGroupInput label='ID del libro' type='text' id='id' name='id' value={id} setValue={setId} />
 
