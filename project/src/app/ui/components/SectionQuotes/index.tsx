@@ -100,7 +100,7 @@ export function SectionQuotes(): ReactElement {
                             {response && response.books.map((book: any) => (
                                 <tr key={book.id}>
                                     <td>{book.title}</td>
-                                    <td>{book.Type === 0 ? 'Libro' : 'Novela'}</td>
+                                    <td>{book.type ===0 ? 'Libro' : 'Novela'}</td>
                                     <td>{book.unitPrice}</td>
                                     <td>{book.cuantity}</td>
                                     <td>{book.totalPrice}</td>
