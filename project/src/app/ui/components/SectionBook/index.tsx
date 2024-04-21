@@ -1,6 +1,9 @@
 import { ReactElement, useState } from 'react';
 import { useBookAdd } from '../../../core/hooks/useAddBooks';
 import './style.css';
+import FormGroupInput from '../../elements/FormGroupInput';
+import FormGroupSelect from '../../elements/FormGroupSelect';
+import Swal from 'sweetalert2';
 
 export function SectionBook(): ReactElement {
     const [id, setId] = useState('');
@@ -14,13 +17,23 @@ export function SectionBook(): ReactElement {
 
     const handleSubmit = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        const isSaveBook = addBook(id, title, originalPrice, quantity, type);
-        if (await isSaveBook) {
-            setId('');
-            setTitle('');
-            setOriginalPrice('');
-            setQuantity('');
-            setType('0');
+
+        if (!id || !title || !originalPrice || !quantity || !type) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Por favor, complete todos los campos',
+            });
+        }
+        else {
+            const isSaveBook = addBook(id, title, originalPrice, quantity, type);
+            if (await isSaveBook) {
+                setId('');
+                setTitle('');
+                setOriginalPrice('');
+                setQuantity('');
+                setType('0');
+            }
         }
     };
 
@@ -30,25 +43,26 @@ export function SectionBook(): ReactElement {
                 <h2 className='addBook__title header__title'>Agregar Libro</h2>
             </header>
             <form className='addBook__form' onSubmit={handleSubmit}>
-                <fieldset>
-                    <label className='addBook__label' htmlFor='id'>ID del libro</label>
-                    <input className='addBook__input' type='text' id='id' name='id' value={id} onChange={(e) => setId(e.target.value)} />
 
-                    <label className='addBook__label' htmlFor='title'>Título</label>
-                    <input className='addBook__input' type='text' id='title' name='title' value={title} onChange={(e) => setTitle(e.target.value)} />
+                <FormGroupInput label='ID del libro' type='text' id='id' name='id' value={id} setValue={setId} />
 
-                    <label className='addBook__label' htmlFor='originalPrice'>Precio original</label>
-                    <input className='addBook__input' type='text' id='originalPrice' name='originalPrice' value={originalPrice} onChange={(e) => setOriginalPrice(e.target.value)} />
+                <FormGroupInput label='Título' type='text' id='title' name='title' value={title} setValue={setTitle} />
 
-                    <label className='addBook__label' htmlFor='quantity'>Cantidad</label>
-                    <input className='addBook__input' type='number' id='quantity' name='quantity' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+                <FormGroupInput label='Precio original' type='text' id='originalPrice' name='originalPrice' value={originalPrice} setValue={setOriginalPrice} />
 
-                    <label className='addBook__label' htmlFor='type'>Tipo</label>
-                    <select className='addBook__input' id='type' name='type' value={type} onChange={(e) => setType(e.target.value)}>
-                        <option value='0'>Libro</option>
-                        <option value='1'>Novela</option>
-                    </select>
-                </fieldset>
+                <FormGroupInput label='Cantidad' type='number' id='quantity' name='quantity' value={quantity} setValue={setQuantity} />
+
+                <FormGroupSelect
+                    label='Tipo'
+                    id='type'
+                    name='type'
+                    value={type}
+                    setValue={setType}
+                    options={[
+                        { id: '0', title: 'Libro' },
+                        { id: '1', title: 'Novela' },
+                    ]}
+                />
 
                 <button className='addBook__button' type='submit'>Enviar</button>
             </form>
