@@ -30,7 +30,6 @@ const FormBook: React.FC<FormProps> = ({ booksAvailable,idInput,label,valueSelec
         value={valueSelect}
         setValue={setValue}
         options={booksAvailable.map((book) => ({ id: book.Id, title: book.Title }))}
-        //onChange={(value) => setIdSelectedBook(value)}
       />
       <FormGroupInput
         label={label}

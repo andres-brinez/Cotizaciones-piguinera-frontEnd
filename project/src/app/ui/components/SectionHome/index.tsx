@@ -11,9 +11,11 @@ export function Home(): ReactElement {
 
   return (
     <section className="home">
+
       <header className="home__header header">
         <h1 className="header__title">Bienvenido {state.email}</h1>
       </header>
+
       <nav className="home__actions">
         <ul>
           <li>
@@ -27,6 +29,7 @@ export function Home(): ReactElement {
             </li> */}
         </ul>
       </nav>
+
       {isLoading ? (
         <p className="home__loading">Cargando...</p>
       ) : (
@@ -54,7 +57,7 @@ export function Home(): ReactElement {
                   <td>{Math.round(book.Discount * 100)}%</td>
                 </tr>
               ))
-            ) : (
+            ):(
               <tr>
                 <td colSpan={6}>No hay libros disponibles.</td>
               </tr>
