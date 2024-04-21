@@ -56,3 +56,16 @@ tfoot ul {
 tfoot li {
   padding: 5px 0;
 }
+
+
+@media screen and (max-width: 600px) {
+
+  .table {
+    font-size: 16px;
+    overflow-x: auto;
+    display: block;
+    
+  }
+  
+
+}

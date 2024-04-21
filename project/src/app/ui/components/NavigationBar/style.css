@@ -18,7 +18,7 @@
 .navbar__logo {
   width: 90%; 
   height: 50px; 
-  object-fit: cover; 
+  object-fit: contain; 
 
 }
 
@@ -89,4 +89,112 @@
 
 .navbar__link:hover {
   background-color: #004999; 
+}
+
+@media (max-width: 600px) {
+  
+  .navbar {
+    position: static;
+    width: 100%;
+    padding: 25px 15px;
+    height: 30dvh;
+  }
+
+
+  
+  .navbar__menu {
+    width: 80%;
+    margin-bottom: 20px;
+    flex-direction: row;
+
+
+  }
+  
+  .navbar__item {
+    margin-top: 20px;
+    width: 30%;
+    border: solid 1px rgb(112, 102, 102);
+
+  }
+
+  .navbar__item:first-child {
+    width: 35%;
+
+  }
+  
+
+}
+@media (max-width: 1100px) {
+  
+  .navbar__menu {
+    width: 90% !important;
+  }
+  
+  .navbar__item {
+    width: 30% !important;
+  }
+
+}
+
+
+@media (max-width: 1100px) {
+  
+  .navbar {
+    position: static;
+    width: 100%;
+    padding: 25px 15px;
+    height: 30dvh;
+  }
+
+
+  
+  .navbar__menu {
+    width: 80%;
+    margin-bottom: 20px;
+    flex-direction: row;
+
+
+  }
+  
+  .navbar__item {
+    margin-top: 20px;
+    width: 15%;
+    border: solid 1px rgb(112, 102, 102);
+
+  }
+
+  .navbar__item:first-child {
+    width: 20%;
+
+  }
+  
+  
+  .navbar__item-img svg {
+    display: none;
+  }
+  
+  .navbar__item a {
+    width: 100%;  
+  }
+  
+  .navbar__item:hover,.navbar__item--active
+  {
+    background-color: #757575; 
+    
+  }
+  
+  .navbar__link {
+    background-color: #4e4b4c; 
+    padding: 8px 10px;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .navbar__link:hover {
+    background-color: #004999; 
+  }
+  
+ 
+  
 }

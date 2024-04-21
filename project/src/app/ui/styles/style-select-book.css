@@ -4,7 +4,6 @@
   margin: 60px;
 }
 
-
  .selected-books__title{
   color: #da224d !important;
  }
@@ -45,3 +44,32 @@ input:focus,select:focus {
   font-size: 24px;
   color: #e64168;
 }
+
+
+@media (max-width: 768px) {
+  
+.select__books{
+  /* width: 80vw; */
+  flex-direction: column-reverse;
+  margin:  0 auto;
+}
+
+.selected-books__article{
+  width: 100%;
+  margin: 50px auto;
+
+}
+
+.selected-books__title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+
+}
+
+
+
+
+
