@@ -4,7 +4,9 @@ import { IBookModel } from "../../../core/models/book.model";
 import { IBookInformationQuotes } from "../../../core/models/book-quotes";
 import Swal from "sweetalert2";
 import { useCalculateQuotes } from "../../../core/hooks/useQuotes";
+
 import './style.css'
+import FormBook from "../../forms/BookForm";
 
 export function SectionQuotes(): ReactElement {
 
@@ -43,10 +45,9 @@ export function SectionQuotes(): ReactElement {
         }
     };
 
-    const handleSubmit = (e: { preventDefault: () => void; }) => {
+    const handleSubmitForm = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         quotes(booksQuotes);
-        console.log(response);
     }
 
     return (
@@ -57,7 +58,7 @@ export function SectionQuotes(): ReactElement {
 
             <article className="select__books">
                 {selectedBooks.length > 0 && (
-                    <article className="selected-books__article">
+                    <div className="selected-books__article">
                         <h2 className="selected-books__title">Libros seleccionados</h2>
                         <ul className="selected-books__list">
                             {selectedBooks.map((book) => (
@@ -66,29 +67,19 @@ export function SectionQuotes(): ReactElement {
                                 </li>
                             ))}
                         </ul>
-                    </article>
+                    </div>
                 )}
-                <form className='form' onSubmit={handleSubmit}>
-                    <fieldset className='form__group'>
-                        <label className='form__label' htmlFor='book'>Libro</label>
-                        <select className='form__select' id='book' name='book' value={idSelectedBook} onChange={(e) => idSetSelectedBook(e.target.value)}>
-                            <option value="">Seleccionar</option>
-                            {booksAvailable.map((book: IBookModel) => (
-                                <option key={book.Id} value={book.Id}>{book.Title}</option>
-                            ))}
-                        </select>
-                    </fieldset>
-
-                    <fieldset className='form__group'>
-                        <label className='form__label' htmlFor='quantity'>Cantidad</label>
-                        <input className='form__input' type='number' id='quantity' name='quantity' value={quantityBook} onChange={(e) => setQuantityBook(e.target.value)} />
-                    </fieldset>
-
-                    <nav className='form__actions'>
-                        <button className='form__button form__button--add' type='button' onClick={handleAddBook}>Agregar Libro</button>
-                        <button className='form__button form__button--other' type='submit'>Cotizar</button>
-                    </nav>
-                </form>
+                
+                <FormBook 
+                booksAvailable={booksAvailable}
+                label="Cantidad"
+                idInput="quantity"
+                valueSelect={idSelectedBook}
+                setValue={idSetSelectedBook}
+                valueInput={quantityBook}
+                setValueInput={setQuantityBook}
+                handleAddBook={handleAddBook}
+                handleSubmit={handleSubmitForm} />
             </article>
 
             {response && (

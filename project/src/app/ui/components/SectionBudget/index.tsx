@@ -4,7 +4,8 @@ import { IBudgetInformation } from "../../../core/models/budget-information";
 import { AppContext } from "../../../core/state/AppContext";
 import Swal from "sweetalert2";
 import { useCalculateQuotes } from "../../../core/hooks/useCalculateBudget";
-import './style.css'
+import FormBook from "../../forms/BookForm";
+import './style.css';
 
 export function SectionBudget(): ReactElement {
 
@@ -47,7 +48,7 @@ export function SectionBudget(): ReactElement {
         }
     };
 
-    const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    const handleSubmitForm = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
         if (quantityBudget === "" || quantityBudget === "0") {
@@ -80,7 +81,7 @@ export function SectionBudget(): ReactElement {
             </header>
             <article className="select__books">
                 {selectedBooks.length > 0 && (
-                    <article className="selected-books__article">
+                    <div className="selected-books__article">
                         <h2 className="selected-books__title">Libros seleccionados</h2>
                         <ul className="selected-books__list">
                             {selectedBooks.map((book) => (
@@ -89,41 +90,27 @@ export function SectionBudget(): ReactElement {
                                 </li>
                             ))}
                         </ul>
-                    </article>
+                    </div>
                 )}
 
-                <form className='form' onSubmit={handleSubmit}>
-                    <fieldset className='form__group'>
-                        <label className='form__label' htmlFor='book'>Libro</label>
-                        <select className='form__input' id='book' name='book' value={idSelectedBook} onChange={(e) => idSetSelectedBook(e.target.value)}>
-                            <option value="">Seleccionar</option>
-                            {booksAvailable.map((book: IBookModel) => (
-                                <option key={book.Id} value={book.Id}>{book.Title}</option>
-                            ))}
-                        </select>
-                    </fieldset>
+                <FormBook
+                    booksAvailable={booksAvailable}
+                    label="Presupuesto"
+                    idInput="budget"
+                    valueSelect={idSelectedBook}
+                    setValue={idSetSelectedBook}
+                    valueInput={quantityBudget}
+                    setValueInput={setQuantityBudget}
+                    handleAddBook={handleAddBook}
+                    handleSubmit={handleSubmitForm} />
 
-                    <fieldset className='form__group'>
-                        <label className='form__label' htmlFor='quantity'>Presupuesto</label>
-                        <input className='form__input' type='number' id='quantity' name='quantity' value={quantityBudget} onChange={(e) => setQuantityBudget(e.target.value)} />
-                    </fieldset>
-
-
-                    <nav className='form__actions'>
-                        <button className='form__button form__button--add' type='button' onClick={handleAddBook}>Agregar Libro</button>
-                        <button className='form__button form__button--other' type='submit'>Realizar presupuesto</button>
-                    </nav>                
-                </form>
             </article>
-
-
             {response && (
                 <article className="result__budget">
                     <h2>Resultado presupuesto</h2>
-
                     <table className="table">
                         <thead>
-                        <tr>
+                            <tr>
                                 <th>Título</th>
                                 <th>Tipo</th>
                                 <th>Precio Unitario</th>
