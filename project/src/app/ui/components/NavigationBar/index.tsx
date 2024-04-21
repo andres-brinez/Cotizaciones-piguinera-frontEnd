@@ -21,7 +21,7 @@ export function NavigationBar() {
 
         },
         {
-            text: 'Cotizacion',
+            text: 'Cotización',
             url: '/quotes',
             imgSrc: '/src/assets/quotes.svg'
 
