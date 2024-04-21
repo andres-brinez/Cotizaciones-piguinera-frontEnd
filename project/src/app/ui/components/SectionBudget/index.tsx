@@ -69,9 +69,7 @@ export function SectionBudget(): ReactElement {
                     setSelectedBooks([]);
                 }
             }
-
         }
-
     }
 
     return (
@@ -93,16 +91,7 @@ export function SectionBudget(): ReactElement {
                     </div>
                 )}
 
-                <FormBook
-                    booksAvailable={booksAvailable}
-                    label="Presupuesto"
-                    idInput="budget"
-                    valueSelect={idSelectedBook}
-                    setValue={idSetSelectedBook}
-                    valueInput={quantityBudget}
-                    setValueInput={setQuantityBudget}
-                    handleAddBook={handleAddBook}
-                    handleSubmit={handleSubmitForm} />
+                <FormBook booksAvailable={booksAvailable} label="Presupuesto" idInput="budget" valueSelect={idSelectedBook} setValue={idSetSelectedBook} valueInput={quantityBudget} setValueInput={setQuantityBudget} handleAddBook={handleAddBook} handleSubmit={handleSubmitForm} />
 
             </article>
             {response && (
@@ -123,7 +112,7 @@ export function SectionBudget(): ReactElement {
                             {response && response.books.map((book: any) => (
                                 <tr key={book.title}>
                                     <td>{book.title}</td>
-                                    <td>{book.Type === 0 ? 'Libro' : 'Novela'}</td>
+                                    <td>{book.type ===0 ? 'Libro' : 'Novela'}</td>
                                     <td>{book.unitPrice}</td>
                                     <td>{book.cuantity}</td>
                                     <td>{book.totalPrice}</td>
@@ -135,8 +124,6 @@ export function SectionBudget(): ReactElement {
                     </table>
                 </article>
             )}
-
-
         </section>
     );
 }
