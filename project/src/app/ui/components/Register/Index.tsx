@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import './style.css';
 import { Link } from 'react-router-dom';
 import { useRegister } from '../../../core/hooks/useRegisterUser';
 import img from '../../../../assets/libro 2.jpg'
+
+import '../../styles/style-auth.css';
+
 
 const Registro = () => {
   const [email, setEmail] = useState('');
@@ -21,6 +23,7 @@ const Registro = () => {
       <main className='auth'>
       <img src={img} alt="Biblioteca" className="auth__image" />
         <form className="auth__form" onSubmit={handleSubmit}>
+    
           <fieldset className="auth__fieldset">
             <legend className="auth__legend">Registro</legend>
 
