@@ -1,0 +1,32 @@
+.form__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  
+}
+
+.form__button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #1e1d1d;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 150px;
+  transition: background-color 0.3s ease;
+}
+
+.form__button--add {
+  background-color: #1e1d1d;
+}
+
+.form__button--add:hover {
+  background-color: #333;
+}
+
+
+.form__button:hover {
+  opacity: 0.8;
+}

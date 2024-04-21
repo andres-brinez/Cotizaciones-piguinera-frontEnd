@@ -16,9 +16,9 @@
 
 }
 .navbar__logo {
-  width: 90%; /* Ajusta el ancho de la imagen */
-  height: 50px; /* Ajusta la altura de la imagen */
-  object-fit: cover; /* Asegura que la imagen cubra todo el espacio disponible sin distorsionarse */
+  width: 90%; 
+  height: 50px; 
+  object-fit: cover; 
 
 }
 
@@ -64,7 +64,7 @@
 
 .navbar__item:hover,.navbar__item--active
 {
-  background-color: #3674b6; 
+  background-color: #E64168; 
 }
 .navbar__item:hover a,
 .navbar__item:hover svg,
@@ -80,7 +80,7 @@
   color: #fff;
   font-size: 18px;
   display: inline-block;
-  background-color: #0d447e; 
+  background-color: #d3113e; 
   padding: 10px 20px;
   border-radius: 13px;
   cursor: pointer;
