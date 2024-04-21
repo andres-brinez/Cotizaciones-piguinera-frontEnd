@@ -26,7 +26,7 @@ main.authLogin {
   border-radius: 10px;
   border: solid 1px #ccc;
   box-shadow: 0 20px 5px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 30px;
   height: auto;
 }
 
@@ -119,24 +119,38 @@ main.authLogin {
 
 }
 
-@media (max-width: 900px) {
+
+@media (max-width: 1200px) {
   .auth__image {
     display: none;
   }
 
+  main.auth {
+    height: 44dvh;
+
+  }
+
+
+  main.authLogin {
+    height: 35dvh;
+
+  }
+
 }
 
+
 @media (max-width: 600px) {
-
-
   main.auth {
     height: 55dvh;
 
   }
 
-  
-main.authLogin {
-  height: 48dvh;
 
-}
+  main.authLogin {
+    height: 48dvh;
+
+  }
+
+
+
 }
