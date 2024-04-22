@@ -1,9 +1,12 @@
 import { ReactElement, useState } from 'react';
-import { useBookAdd } from '../../core/hooks/useAddBooks';
+import { useBookAdd } from '../../../core/hooks/useAddBooks';
+
 import './style.css';
-import FormGroupInput from '../../ui/elements/FormGroupInput';
-import FormGroupSelect from '../../ui/elements/FormGroupSelect';
+// import {FormGroupInput} from '../../ui/elements/FormGroupInput';
+// import {FormGroupSelect} from '../../ui/elements/FormGroupSelect';
 import Swal from 'sweetalert2';
+import FormGroupInput from '../../elements/FormGroupInput';
+import FormGroupSelect from '../../elements/FormGroupSelect';
 
 export function SectionBook(): ReactElement {
     const [id, setId] = useState('');
@@ -13,7 +16,6 @@ export function SectionBook(): ReactElement {
     const [type, setType] = useState('0');
 
     const { addBook, } = useBookAdd();
-
 
     const handleSubmit = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();

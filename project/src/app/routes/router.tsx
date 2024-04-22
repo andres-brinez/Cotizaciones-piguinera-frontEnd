@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Login from '../ui/components/Login';
 import Registro from '../ui/components/Register/Index';
-import { SectionBook } from '../containers/SectionBook';
 import { SectionBudget } from '../ui/components/SectionBudget';
+import { SectionBook } from '../ui/components/SectionBook';
+
 import { Home } from '../ui/components/SectionHome';
 import { SectionQuotes } from '../ui/components/SectionQuotes';
 import { Layout } from '../ui/layouts';
