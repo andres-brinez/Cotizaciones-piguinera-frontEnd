@@ -1,12 +1,12 @@
-import { ReactElement, useContext, useEffect, useState } from "react";
-import { IBookModel } from "../../../core/models/book.model";
-import { IBudgetInformation } from "../../../core/models/budget-information";
-import { AppContext } from "../../../core/state/AppContext";
-import Swal from "sweetalert2";
-import { useCalculateQuotes } from "../../../core/hooks/useCalculateBudget";
-import FormBook from "../../forms/BookForm";
+import { ReactElement, useContext, useEffect, useState } from 'react';
+import { IBookModel } from '../../../core/models/book.model';
+import { IBudgetInformation } from '../../../core/models/budget-information';
+import { AppContext } from '../../../core/state/AppContext';
+import Swal from 'sweetalert2';
+import { useCalculateQuotes } from '../../../core/hooks/useCalculateBudget';
+import FormBook from '../../forms/BookForm';
 import './style.css';
-import SelectedBooks from "../SelectedBooks";
+import SelectedBooks from '../SelectedBooks';
 
 export function SectionBudget(): ReactElement {
 
@@ -32,7 +32,6 @@ export function SectionBudget(): ReactElement {
                 title: 'Error',
                 text: 'Por favor, seleccione un libro para agregar.'
             });
-
         }
         else {
             const selectedBookInfo = booksAvailable.find(book => book.Id === idSelectedBook);

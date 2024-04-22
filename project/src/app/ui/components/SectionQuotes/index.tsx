@@ -1,13 +1,13 @@
-import { ReactElement, useContext, useEffect, useState } from "react";
-import { AppContext } from "../../../core/state/AppContext";
-import { IBookModel } from "../../../core/models/book.model";
-import { IBookInformationQuotes } from "../../../core/models/book-quotes";
-import Swal from "sweetalert2";
-import { useCalculateQuotes } from "../../../core/hooks/useQuotes";
+import { ReactElement, useContext, useEffect, useState } from 'react';
+import { AppContext } from '../../../core/state/AppContext';
+import { IBookModel } from '../../../core/models/book.model';
+import { IBookInformationQuotes } from '../../../core/models/book-quotes';
+import Swal from 'sweetalert2';
+import { useCalculateQuotes } from '../../../core/hooks/useQuotes';
 
-import './style.css'
-import FormBook from "../../forms/BookForm";
-import SelectedBooks from "../SelectedBooks";
+import './style.css';
+import FormBook from '../../forms/BookForm';
+import SelectedBooks from '../SelectedBooks';
 
 export function SectionQuotes(): ReactElement {
 
