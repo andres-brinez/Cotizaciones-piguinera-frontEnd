@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthLogin } from '../../../core/hooks/useAuth';
 import img from '../../../../assets/libro.jpg';
 
 import '../../styles/style-auth.css';
 
-const Login = () => {
+const Login = ():ReactElement => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { authenticate, errorMessage } = useAuthLogin();
@@ -31,7 +31,6 @@ const Login = () => {
             <input className="auth__input" type="password" name='userPassword' id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           
           </fieldset>
-
           <button className="auth__button" type="submit">Iniciar sesión</button>
           {/* si el error existe */}
           {errorMessage && <p className="auth__error">{errorMessage}</p>}
