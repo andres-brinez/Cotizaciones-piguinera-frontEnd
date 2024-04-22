@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { useCalculateQuotes } from "../../../core/hooks/useCalculateBudget";
 import FormBook from "../../forms/BookForm";
 import './style.css';
+import SelectedBooks from "../SelectedBooks";
 
 export function SectionBudget(): ReactElement {
 
@@ -74,23 +75,12 @@ export function SectionBudget(): ReactElement {
 
     return (
         <section className='sectionBudget'>
-            <header className="home__header header">
+            <header className=" header">
                 <h2 className='sectionQuotes__title header__title'>Presupuesto</h2>
             </header>
             <article className="select__books">
-                {selectedBooks.length > 0 && (
-                    <div className="selected-books__article">
-                        <h2 className="selected-books__title">Libros seleccionados</h2>
-                        <ul className="selected-books__list">
-                            {selectedBooks.map((book) => (
-                                <li key={book.Id} className="selected-books__item">
-                                    {book.Title}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
 
+                <SelectedBooks selectedBooks={selectedBooks} />
                 <FormBook booksAvailable={booksAvailable} label="Presupuesto" idInput="budget" valueSelect={idSelectedBook} setValue={idSetSelectedBook} valueInput={quantityBudget} setValueInput={setQuantityBudget} handleAddBook={handleAddBook} handleSubmit={handleSubmitForm} />
 
             </article>
@@ -112,7 +102,7 @@ export function SectionBudget(): ReactElement {
                             {response && response.books.map((book: any) => (
                                 <tr key={book.title}>
                                     <td>{book.title}</td>
-                                    <td>{book.type ===0 ? 'Libro' : 'Novela'}</td>
+                                    <td>{book.type === 0 ? 'Libro' : 'Novela'}</td>
                                     <td>{book.unitPrice}</td>
                                     <td>{book.cuantity}</td>
                                     <td>{book.totalPrice}</td>

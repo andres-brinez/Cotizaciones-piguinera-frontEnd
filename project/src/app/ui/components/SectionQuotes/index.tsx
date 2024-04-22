@@ -7,6 +7,7 @@ import { useCalculateQuotes } from "../../../core/hooks/useQuotes";
 
 import './style.css'
 import FormBook from "../../forms/BookForm";
+import SelectedBooks from "../SelectedBooks";
 
 export function SectionQuotes(): ReactElement {
 
@@ -52,34 +53,14 @@ export function SectionQuotes(): ReactElement {
 
     return (
         <section className='sectionQuotes'>
-            <header className="home__header header">
+            <header className="header">
                 <h2 className='sectionQuotes__title header__title'>Cotización</h2>
             </header>
 
             <article className="select__books">
-                {selectedBooks.length > 0 && (
-                    <div className="selected-books__article">
-                        <h2 className="selected-books__title">Libros seleccionados</h2>
-                        <ul className="selected-books__list">
-                            {selectedBooks.map((book) => (
-                                <li key={book.Id} className="selected-books__item">
-                                    {book.Title}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
-                
-                <FormBook 
-                booksAvailable={booksAvailable}
-                label="Cantidad"
-                idInput="quantity"
-                valueSelect={idSelectedBook}
-                setValue={idSetSelectedBook}
-                valueInput={quantityBook}
-                setValueInput={setQuantityBook}
-                handleAddBook={handleAddBook}
-                handleSubmit={handleSubmitForm} />
+                <SelectedBooks selectedBooks={selectedBooks} />
+                <FormBook booksAvailable={booksAvailable} label="Cantidad" idInput="quantity" valueSelect={idSelectedBook} setValue={idSetSelectedBook} valueInput={quantityBook} setValueInput={setQuantityBook} handleAddBook={handleAddBook}
+                    handleSubmit={handleSubmitForm} />
             </article>
 
             {response && (
@@ -100,7 +81,7 @@ export function SectionQuotes(): ReactElement {
                             {response && response.books.map((book: any) => (
                                 <tr key={book.id}>
                                     <td>{book.title}</td>
-                                    <td>{book.type ===0 ? 'Libro' : 'Novela'}</td>
+                                    <td>{book.type === 0 ? 'Libro' : 'Novela'}</td>
                                     <td>{book.unitPrice}</td>
                                     <td>{book.cuantity}</td>
                                     <td>{book.totalPrice}</td>
