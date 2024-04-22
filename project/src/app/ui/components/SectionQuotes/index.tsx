@@ -82,9 +82,9 @@ export function SectionQuotes(): ReactElement {
                                 <tr key={book.id}>
                                     <td>{book.title}</td>
                                     <td>{book.type === 0 ? 'Libro' : 'Novela'}</td>
-                                    <td>{book.unitPrice}</td>
+                                    <td>{Math.floor(book.unitPrice).toLocaleString('es-ES')}</td>
                                     <td>{book.cuantity}</td>
-                                    <td>{book.totalPrice}</td>
+                                    <td>{Math.floor(book.totalPrice).toLocaleString('es-ES')}</td>
                                     <td>{book.discount}</td>
                                 </tr>
                             ))}
@@ -95,9 +95,10 @@ export function SectionQuotes(): ReactElement {
 
                                 <td>
                                     <ul>
-                                        <li>Precio Total: {response && response.totalPrice}</li>
+                                        <li>Precio Total: {Math.floor(response.totalPrice).toLocaleString('es-ES')}</li>
                                         <li>Tipo de Compra: {response && response.typePurchase}</li>
                                         <li>Cantidad de Libros: {response && response.countBook}</li>
+
                                     </ul>
                                 </td>
                             </tr>
