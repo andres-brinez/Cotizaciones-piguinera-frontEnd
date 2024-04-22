@@ -1,8 +1,8 @@
 import { ReactElement, useState } from 'react';
-import { useBookAdd } from '../../../core/hooks/useAddBooks';
+import { useBookAdd } from '../../core/hooks/useAddBooks';
 import './style.css';
-import FormGroupInput from '../../elements/FormGroupInput';
-import FormGroupSelect from '../../elements/FormGroupSelect';
+import FormGroupInput from '../../ui/elements/FormGroupInput';
+import FormGroupSelect from '../../ui/elements/FormGroupSelect';
 import Swal from 'sweetalert2';
 
 export function SectionBook(): ReactElement {
@@ -52,12 +52,7 @@ export function SectionBook(): ReactElement {
 
                 <FormGroupInput label='Cantidad' type='number' id='quantity' name='quantity' value={quantity} setValue={setQuantity} />
 
-                <FormGroupSelect
-                    label='Tipo'
-                    id='type'
-                    name='type'
-                    value={type}
-                    setValue={setType}
+                <FormGroupSelect label='Tipo' id='type' name='type' value={type} setValue={setType}
                     options={[
                         { id: '0', title: 'Libro' },
                         { id: '1', title: 'Novela' },
