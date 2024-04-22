@@ -1,5 +1,5 @@
 import React from 'react';
-import { IBookModel } from "../../../core/models/book.model";
+import { IBookModel } from '../../../core/models/book.model';
 import FormGroupInput from '../../elements/FormGroupInput';
 import FormGroupSelect from '../../elements/FormGroupSelect';
 import FormActions from '../../elements/FormAction';
@@ -11,16 +11,13 @@ interface FormProps {
   idInput: string
   valueSelect: string;
   setValue: (value: string) => void;
-  valueInput:string;
+  valueInput: string;
   setValueInput: (value: string) => void;
   handleAddBook: () => void;
   handleSubmit: (event: React.FormEvent) => void;
-
 }
 
-const FormBook: React.FC<FormProps> = ({ booksAvailable,idInput,label,valueSelect,setValue,valueInput,setValueInput,handleAddBook,handleSubmit }) => {
- 
-  
+const FormBook: React.FC<FormProps> = ({ booksAvailable, idInput, label, valueSelect, setValue, valueInput, setValueInput, handleAddBook, handleSubmit }) => {
   return (
     <form className='form' onSubmit={handleSubmit}>
       <FormGroupSelect
@@ -33,13 +30,13 @@ const FormBook: React.FC<FormProps> = ({ booksAvailable,idInput,label,valueSelec
       />
       <FormGroupInput
         label={label}
-        type='input'
+        type='number'
         id={idInput}
         name={idInput}
         value={valueInput}
         setValue={setValueInput}
       />
-      <FormActions title='cotizar' onAdd={handleAddBook}  />
+      <FormActions title='cotizar' onAdd={handleAddBook} />
     </form>
   );
 };
