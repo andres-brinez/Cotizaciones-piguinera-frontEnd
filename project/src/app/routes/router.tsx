@@ -5,8 +5,9 @@ import { SectionBudget } from '../ui/components/SectionBudget';
 import { SectionBook } from '../ui/components/SectionBook';
 
 import { Home } from '../ui/components/SectionHome';
-import { SectionQuotes } from '../ui/components/SectionQuotes';
+import { SectionQuote } from '../ui/components/SectionQuote';
 import { Layout } from '../ui/layouts';
+import { SectionQuotesGroup } from '../ui/components/SectionQuotesGroup';
 
 export const router = createBrowserRouter([
   {
@@ -18,10 +19,12 @@ export const router = createBrowserRouter([
       // { path: 'addBook', element: <Guard><SectionBook /></Guard> },
       // { path: 'budget', element: <Guard><SectionBudget /></Guard> },
       // { path: 'quotes', element: <Guard><SectionQuotes /></Guard> },
-      { path: 'home', element: <Home />},
-      { path: 'addBook', element:<SectionBook /> },
-      { path: 'budget', element:<SectionBudget /> },
-      { path: 'quotes', element:<SectionQuotes /> },
+      { path: 'home', element: <Home /> },
+      { path: 'addBook', element: <SectionBook /> },
+      { path: 'budget', element: <SectionBudget /> },
+      { path: 'quote', element: <SectionQuote /> },
+      { path: 'quotes', element: <SectionQuotesGroup /> },
+
     ],
   },
 

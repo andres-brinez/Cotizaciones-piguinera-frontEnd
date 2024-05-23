@@ -7,12 +7,12 @@ import './style.css';
 export const Layout=():ReactElement=>{
   return (
     <>
-    <NavigationBar/>
-        <main className="layout">
-            {/* Aquí se renderizarán los componentes */}
-            <Outlet>
-            </Outlet>
-        </main>
+      <NavigationBar/>
+      <main className="layout">
+          {/* Aquí se renderizarán los componentes */}
+          <Outlet>
+          </Outlet>
+      </main>
     </>
     
   )
