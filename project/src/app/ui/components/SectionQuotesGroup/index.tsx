@@ -13,7 +13,7 @@ export function SectionQuotesGroup(): ReactElement {
     const { books } = useBookReducer();
 
     //const [booksAvailable, setBooksbooksAvailable] = useState<IBookModel[]>([]);
-    const [selectedBooks, setSelectedBooks] = useState<{ Id: string, Title: string, Quantity: string,  GroupIndex:number    }[]>([]);
+    const [selectedBooks, setSelectedBooks] = useState<{ Id: string, Title: string, Quantity: string, GroupIndex: number }[]>([]);
     const [booksQuotationGroups, setQuotationGroups] = useState<IBookInformationQuotes[][]>([]); // [ {Id: '1', Quantity: '2'}, {Id: '2', Quantity: '3'}
 
     // Guarda el indice del grupo(lit) actual
@@ -41,11 +41,11 @@ export function SectionQuotesGroup(): ReactElement {
         else {
             const selectedBookInfo = books.find(book => book.Id === idSelectedBook);
             if (selectedBookInfo) {
-                setSelectedBooks(prevBooks => [...prevBooks, { ...selectedBookInfo, Quantity: quantityBook,GroupIndex: currentGroupIndex}]);
+                setSelectedBooks(prevBooks => [...prevBooks, { ...selectedBookInfo, Quantity: quantityBook, GroupIndex: currentGroupIndex }]);
                 setQuotationGroups(prevGroups => {
                     const newGroups = [...prevGroups];
                     const currentGroup = newGroups[currentGroupIndex] || [];
-                    newGroups[currentGroupIndex] = [...currentGroup, { Id: idSelectedBook, Quantity: quantityBook, GroupIndex: currentGroupIndex }];
+                    newGroups[currentGroupIndex] = [...currentGroup, { IdBook: idSelectedBook, Quantity: quantityBook, GroupIndex: currentGroupIndex }];
                     return newGroups;
                 });
             }
@@ -62,7 +62,7 @@ export function SectionQuotesGroup(): ReactElement {
 
     const handleSubmitForm = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-     quotes(booksQuotationGroups);
+        quotes(booksQuotationGroups);
     }
 
     return (
@@ -76,7 +76,7 @@ export function SectionQuotesGroup(): ReactElement {
                 <FormBook booksAvailable={books} label="Cantidad" idInput="quantity" valueSelect={idSelectedBook} setValue={idSetSelectedBook} valueInput={quantityBook} setValueInput={setQuantityBook} handleAddBook={handleAddBook}
                     newGroup={handleCreateNewGroup}
                     handleSubmit={handleSubmitForm}
-                    />
+                />
 
             </article>
 

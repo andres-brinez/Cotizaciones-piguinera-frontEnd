@@ -1,5 +1,5 @@
 export interface IBookInformationQuotes {
-  Id: string;
+  IdBook: string;
   Quantity: string;
   GroupIndex: number;
 }
