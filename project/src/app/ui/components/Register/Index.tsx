@@ -15,7 +15,6 @@ const Registro = () => {
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     register(email, password, name);
-
   };
 
   return (

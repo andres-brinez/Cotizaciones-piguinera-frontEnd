@@ -7,7 +7,7 @@ import { IBookModel } from "../models/book.model";
 
 export const initialState: IState = {
   isUserLogged: false,
-  email: '',
+  email: 'Usuario por defecto',
   books: []
 }
 

@@ -7,7 +7,6 @@ import { SectionBook } from '../ui/components/SectionBook';
 import { Home } from '../ui/components/SectionHome';
 import { SectionQuotes } from '../ui/components/SectionQuotes';
 import { Layout } from '../ui/layouts';
-import { Guard } from './Guard';
 
 export const router = createBrowserRouter([
   {
@@ -15,10 +14,14 @@ export const router = createBrowserRouter([
     Component: Layout,
     children: [
       // El  componente de element es lo que se renderiza en el outlet
-      { path: 'home', element: <Guard><Home /></Guard> },
-      { path: 'addBook', element: <Guard><SectionBook /></Guard> },
-      { path: 'budget', element: <Guard><SectionBudget /></Guard> },
-      { path: 'quotes', element: <Guard><SectionQuotes /></Guard> },
+      // { path: 'home', element: <Guard><Home /></Guard> },
+      // { path: 'addBook', element: <Guard><SectionBook /></Guard> },
+      // { path: 'budget', element: <Guard><SectionBudget /></Guard> },
+      // { path: 'quotes', element: <Guard><SectionQuotes /></Guard> },
+      { path: 'home', element: <Home />},
+      { path: 'addBook', element:<SectionBook /> },
+      { path: 'budget', element:<SectionBudget /> },
+      { path: 'quotes', element:<SectionQuotes /> },
     ],
   },
 
