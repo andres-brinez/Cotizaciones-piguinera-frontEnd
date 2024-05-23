@@ -3,10 +3,12 @@ import { useBooks } from '../../../core/hooks/useBooks';
 import { ItemMenu } from '../../elements/ItemMenu';
 import './style.css';
 import { useUser } from '../../../core/hooks/useUser';
+import { useBookReducer } from '../../../core/hooks/useBooksReducer';
 
 
 export function Home(): ReactElement {
-  const { books, isLoading } = useBooks();
+  const {isLoading } = useBooks();
+  const {books} = useBookReducer();
 
   const {user} = useUser();
 
@@ -53,7 +55,7 @@ export function Home(): ReactElement {
                   <td><input type="checkbox" /></td>
                   <td>{book.Title}</td>
                   <td>{book.EmailProvider}</td>
-                  <td>{book.Type === 0 ? 'Libro' : 'Novela'}</td>
+                  <td>{book.Type === "BOOK" ? 'Libro' : 'Novela'}</td>
                   <td>{Math.floor(book.UnitPrice).toLocaleString('es-ES')}</td>
                   <td>{Math.round(book.Discount * 100)}%</td>
                 </tr>

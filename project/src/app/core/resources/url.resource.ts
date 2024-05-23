@@ -8,7 +8,7 @@ export const urls = {
   quotes: `${environment.apiUrl}/quotes/CalculateBooksPay`,
   budget: `${environment.apiUrl}/quotes/CalculateBooksBudget`,
 
-  getBooks: `${environment.apiUrl}/quotes/GetAllBooks`,
+  getBooks: `${environment.apiUrl}/Book/GetAllBooks`,
 
 
   

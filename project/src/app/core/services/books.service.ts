@@ -22,10 +22,10 @@ export const getBooksService = (): Promise<IBookModel[]> => {
           return {
             Id: book.id,
             Title: book.title,
-            EmailProvider: book.emailProvider,
-            OriginalPrice: book.originalPrice,
-            Quantity: book.quantity,
-            Type: book.type,
+            EmailProvider: book.emailSupplier,
+            // OriginalPrice: book.originalPrice,
+            // Quantity: book.quantity,
+            Type: book.bookType,
             UnitPrice: book.unitPrice,
             Discount: book.discount
           }
