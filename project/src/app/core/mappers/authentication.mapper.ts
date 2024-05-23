@@ -13,7 +13,7 @@ export default {
     return {
       Password: credentials.Password,
       Email: credentials.Email,
-      userName: credentials.Email
+      Name: credentials.UserName
 
     }
   },
