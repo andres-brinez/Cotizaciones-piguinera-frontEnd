@@ -24,10 +24,17 @@
 .selected-books__list {
   list-style-type: none;
   padding: 0;
+
+}
+
+.selected-books__group{
+  color: #da224d;
+  font-weight: bolder;
+  font-size: 18px;
 }
 
 .selected-books__item {
-  padding: 10px;
+  padding: 15px 0 ;
   border-bottom: 1px solid #ddd;
 }
 

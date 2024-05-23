@@ -4,13 +4,19 @@ import './style..css'
 interface Book {
   Id: string;
   Title: string;
+  Quantity: string;
+  GroupIndex:number
+
 }
+
 
 interface SelectedBooksProps {
   selectedBooks: Book[];
+  currentIndexGruop: number;
+
 }
 
-const SelectedBooks: React.FC<SelectedBooksProps> = ({ selectedBooks }) => {
+const SelectedBooks: React.FC<SelectedBooksProps> = ({ selectedBooks,currentIndexGruop }) => {
   if (selectedBooks.length === 0) {
     return null;
   }
@@ -21,10 +27,11 @@ const SelectedBooks: React.FC<SelectedBooksProps> = ({ selectedBooks }) => {
       <ul className="selected-books__list">
         {selectedBooks.map((book) => (
           <li key={book.Id} className="selected-books__item">
-            {book.Title}
+           Nombre: {book.Title} , Cantidad:{book.Quantity}, Grupo:{book.GroupIndex+1}
           </li>
         ))}
       </ul>
+      <p className='selected-books__group' >Grupo actual:{currentIndexGruop+1} </p>
     </div>
   );
 };

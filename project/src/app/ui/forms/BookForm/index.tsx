@@ -15,9 +15,11 @@ interface FormProps {
   setValueInput: (value: string) => void;
   handleAddBook: () => void;
   handleSubmit: (event: React.FormEvent) => void;
+  newGroup:()=>void;
+
 }
 
-const FormBook: React.FC<FormProps> = ({ booksAvailable, idInput, label, valueSelect, setValue, valueInput, setValueInput, handleAddBook, handleSubmit }) => {
+const FormBook: React.FC<FormProps> = ({ booksAvailable, idInput, label, valueSelect, setValue, valueInput, setValueInput, handleAddBook,newGroup,handleSubmit }) => {
   return (
     <form className='form' onSubmit={handleSubmit}>
       <FormGroupSelect
@@ -27,6 +29,7 @@ const FormBook: React.FC<FormProps> = ({ booksAvailable, idInput, label, valueSe
         value={valueSelect}
         setValue={setValue}
         options={booksAvailable.map((book) => ({ id: book.Id, title: book.Title }))}
+
       />
       <FormGroupInput
         label={label}
@@ -36,7 +39,7 @@ const FormBook: React.FC<FormProps> = ({ booksAvailable, idInput, label, valueSe
         value={valueInput}
         setValue={setValueInput}
       />
-      <FormActions title='cotizar' onAdd={handleAddBook} />
+      <FormActions title='cotizar' newGroup={newGroup} onAdd={handleAddBook} />
     </form>
   );
 };

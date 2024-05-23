@@ -1,6 +1,4 @@
-import { ReactElement, useContext, useEffect, useState } from 'react';
-import { AppContext } from '../../../core/state/AppContext';
-import { IBookModel } from '../../../core/models/book.model';
+import { ReactElement, useEffect, useState } from 'react';
 import { IBookInformationQuotes } from '../../../core/models/book-quotes';
 import Swal from 'sweetalert2';
 import { useCalculateQuotes } from '../../../core/hooks/useQuotes';
@@ -8,14 +6,18 @@ import { useCalculateQuotes } from '../../../core/hooks/useQuotes';
 import './style.css';
 import FormBook from '../../forms/BookForm';
 import SelectedBooks from '../SelectedBooks';
+import { useBookReducer } from '../../../core/hooks/useBooksReducer';
 
 export function SectionQuotesGroup(): ReactElement {
 
-    const { state } = useContext(AppContext);
+    const { books } = useBookReducer();
 
-    const [booksAvailable, setBooksbooksAvailable] = useState<IBookModel[]>([]);
-    const [selectedBooks, setSelectedBooks] = useState<{ Id: string, Title: string, Quantity: string }[]>([]);
-    const [booksQuotes, setBooksQuotes] = useState<IBookInformationQuotes[]>([]); // [ {Id: '1', Quantity: '2'}, {Id: '2', Quantity: '3'}
+    //const [booksAvailable, setBooksbooksAvailable] = useState<IBookModel[]>([]);
+    const [selectedBooks, setSelectedBooks] = useState<{ Id: string, Title: string, Quantity: string,  GroupIndex:number    }[]>([]);
+    const [booksQuotationGroups, setQuotationGroups] = useState<IBookInformationQuotes[][]>([]); // [ {Id: '1', Quantity: '2'}, {Id: '2', Quantity: '3'}
+
+    // Guarda el indice del grupo(lit) actual
+    const [currentGroupIndex, setCurrentGroupIndex] = useState<number>(0);
 
     // Guarda la información del libro seleccionado
     const [idSelectedBook, idSetSelectedBook] = useState<string>('');
@@ -24,7 +26,7 @@ export function SectionQuotesGroup(): ReactElement {
     const { quotes, response } = useCalculateQuotes();
 
     useEffect(() => {
-        setBooksbooksAvailable(state.books);
+        //setBooksbooksAvailable(state.books);
     }, []);
 
     const handleAddBook = () => {
@@ -37,18 +39,30 @@ export function SectionQuotesGroup(): ReactElement {
 
         }
         else {
-            const selectedBookInfo = booksAvailable.find(book => book.Id === idSelectedBook);
-
+            const selectedBookInfo = books.find(book => book.Id === idSelectedBook);
             if (selectedBookInfo) {
-                setSelectedBooks(prevBooks => [...prevBooks, { ...selectedBookInfo, Quantity: quantityBook }]);
-                setBooksQuotes(prevBooksQuotes => [...prevBooksQuotes, { Id: idSelectedBook, Cuantity: quantityBook }]);
+                setSelectedBooks(prevBooks => [...prevBooks, { ...selectedBookInfo, Quantity: quantityBook,GroupIndex: currentGroupIndex}]);
+                setQuotationGroups(prevGroups => {
+                    const newGroups = [...prevGroups];
+                    const currentGroup = newGroups[currentGroupIndex] || [];
+                    newGroups[currentGroupIndex] = [...currentGroup, { Id: idSelectedBook, Quantity: quantityBook, GroupIndex: currentGroupIndex }];
+                    return newGroups;
+                });
             }
         }
     };
 
+    const handleCreateNewGroup = () => {
+        setCurrentGroupIndex(booksQuotationGroups.length);
+        setQuotationGroups(prevGroups => [...prevGroups, []]);
+    };
+
+    console.log(booksQuotationGroups);
+
+
     const handleSubmitForm = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        quotes(booksQuotes);
+     quotes(booksQuotationGroups);
     }
 
     return (
@@ -58,9 +72,11 @@ export function SectionQuotesGroup(): ReactElement {
             </header>
 
             <article className="select__books">
-                <SelectedBooks selectedBooks={selectedBooks} />
-                <FormBook booksAvailable={booksAvailable} label="Cantidad" idInput="quantity" valueSelect={idSelectedBook} setValue={idSetSelectedBook} valueInput={quantityBook} setValueInput={setQuantityBook} handleAddBook={handleAddBook}
-                    handleSubmit={handleSubmitForm} />
+                <SelectedBooks selectedBooks={selectedBooks} currentIndexGruop={currentGroupIndex} />
+                <FormBook booksAvailable={books} label="Cantidad" idInput="quantity" valueSelect={idSelectedBook} setValue={idSetSelectedBook} valueInput={quantityBook} setValueInput={setQuantityBook} handleAddBook={handleAddBook}
+                    newGroup={handleCreateNewGroup}
+                    handleSubmit={handleSubmitForm}
+                    />
 
             </article>
 
