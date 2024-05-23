@@ -1,18 +1,25 @@
-import { ReactElement, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { ReactElement,useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthLogin } from '../../../core/hooks/useAuth';
 import img from '../../../../assets/libro.jpg';
 
 import '../../styles/style-auth.css';
+import { useUser } from '../../../core/hooks/useUser';
 
 const Login = ():ReactElement => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { authenticate, errorMessage } = useAuthLogin();
+  const {errorMessage } = useAuthLogin();
+  // const { authenticate, errorMessage } = useAuthLogin();
+
+  const {updateUserLoged} = useUser();
+  const navigateTo = useNavigate();
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    authenticate(email, password);
+    updateUserLoged(email); // Aquí se pasa el email como payload
+    navigateTo('/home');
+    //authenticate(email, password);
   }
 
   return (
@@ -44,3 +51,7 @@ const Login = ():ReactElement => {
 };
 
 export default Login;
+
+// function dispatch(arg0: { type: string; payload: string; }) {
+//   throw new Error('Function not implemented.');
+// }

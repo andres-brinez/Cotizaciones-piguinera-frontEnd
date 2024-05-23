@@ -1,19 +1,20 @@
-import { ReactElement, useContext } from 'react';
+import { ReactElement} from 'react';
 import { useBooks } from '../../../core/hooks/useBooks';
-import { AppContext } from '../../../core/state/AppContext';
 import { ItemMenu } from '../../elements/ItemMenu';
 import './style.css';
+import { useUser } from '../../../core/hooks/useUser';
 
 
 export function Home(): ReactElement {
   const { books, isLoading } = useBooks();
-  const { state } = useContext(AppContext);
+
+  const {user} = useUser();
 
   return (
     <section className="home">
 
       <header className="home__header header">
-        <h1 className="header__title">Bienvenido {state.email}</h1>
+        <h1 className="header__title">Bienvenido {user}</h1>
       </header>
 
       <nav className="home__actions">
