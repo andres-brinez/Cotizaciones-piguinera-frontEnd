@@ -1,12 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { IBookModel } from "../models/book.model";
+import { useEffect, useState } from "react";
 import { getBooksService } from "../services/books.service";
-import { AppContext } from "../state/AppContext";
+import { useBookReducer } from "./useBooksReducer";
 
 export const useBooks = () => {
-  const [, setBooks] = useState<IBookModel[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { state, dispatch } = useContext(AppContext);
+  const {_updateBooks} = useBookReducer();
+
 
   useEffect(() => {
     setIsLoading(true);
@@ -14,12 +13,11 @@ export const useBooks = () => {
       console.log('response desde el homepage')
       console.log(response)
       if (response) {
-        setBooks(response);
-        dispatch({ type: 'BOOKS_GOTTEN', payload: response });
+        _updateBooks(response);
       }
       setIsLoading(false);
     });
   }, []);
-  return { books: state.books, isLoading }
+  return {isLoading }
 }
 
