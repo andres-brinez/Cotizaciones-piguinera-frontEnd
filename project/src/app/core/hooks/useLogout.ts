@@ -1,13 +1,13 @@
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { StorageService } from "../services/general/storage.service";
-import { AppContext } from "../state/AppContext";
 import Swal from "sweetalert2";
+import { useUser } from "./useUser";
 
 export const useLogout = () => {
-  const { dispatch } = useContext(AppContext);
   const navigateTo = useNavigate();
   const storage = new StorageService();
+  const {updateUserLoged} = useUser();
+
 
   const logout = async () => {
     const result = await Swal.fire({
@@ -21,7 +21,7 @@ export const useLogout = () => {
     });
 
     if (result.isConfirmed) {
-      dispatch({ type: 'USER_LOGGED_OUT' });
+      updateUserLoged("");
       storage.set('TOKEN', '');
       navigateTo('/login');
     }

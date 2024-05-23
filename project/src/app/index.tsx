@@ -2,12 +2,14 @@
 import { ReactElement } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/router';
-import { AppProvider } from './core/state/AppContext';
+import { Provider } from "react-redux"
+import { store } from './core/store/store';
 
 export const App = (): ReactElement => {
   return (
-    <AppProvider>
+    <Provider store={store}>
       <RouterProvider router={router} />
-    </AppProvider>
+  </Provider>
+
   );
 };
