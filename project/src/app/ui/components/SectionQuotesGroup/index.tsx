@@ -1,12 +1,13 @@
-import { ReactElement, useEffect, useState } from 'react';
-import { IBookInformationQuotes } from '../../../core/models/book-quotes';
+import { ReactElement, useState } from 'react';
+import { IBookInformationQuotes } from '../../../core/models/book-quote';
 import Swal from 'sweetalert2';
-import { useCalculateQuotes } from '../../../core/hooks/useQuotes';
 
 import './style.css';
 import FormBook from '../../forms/BookForm';
 import SelectedBooks from '../SelectedBooks';
 import { useBookReducer } from '../../../core/hooks/useBooksReducer';
+import { useCalculateQuotes } from '../../../core/hooks/useQuotes';
+import QuoteTable from '../QuoteTable';
 
 export function SectionQuotesGroup(): ReactElement {
 
@@ -25,9 +26,6 @@ export function SectionQuotesGroup(): ReactElement {
 
     const { quotes, response } = useCalculateQuotes();
 
-    useEffect(() => {
-        //setBooksbooksAvailable(state.books);
-    }, []);
 
     const handleAddBook = () => {
         if (!idSelectedBook || !quantityBook || quantityBook == "0") {
@@ -45,7 +43,7 @@ export function SectionQuotesGroup(): ReactElement {
                 setQuotationGroups(prevGroups => {
                     const newGroups = [...prevGroups];
                     const currentGroup = newGroups[currentGroupIndex] || [];
-                    newGroups[currentGroupIndex] = [...currentGroup, { IdBook: idSelectedBook, Quantity: quantityBook, GroupIndex: currentGroupIndex }];
+                    newGroups[currentGroupIndex] = [...currentGroup, { IdBook: idSelectedBook, Quantity: quantityBook }];
                     return newGroups;
                 });
             }
@@ -57,12 +55,13 @@ export function SectionQuotesGroup(): ReactElement {
         setQuotationGroups(prevGroups => [...prevGroups, []]);
     };
 
-    console.log(booksQuotationGroups);
-
 
     const handleSubmitForm = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         quotes(booksQuotationGroups);
+        setSelectedBooks([]);
+        setQuantityBook('');
+        setQuotationGroups([]);
     }
 
     return (
@@ -83,44 +82,15 @@ export function SectionQuotesGroup(): ReactElement {
             {response && (
                 <article className="result">
                     <h2>Resultado cotización</h2>
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Título</th>
-                                <th>Tipo</th>
-                                <th>Precio Unitario</th>
-                                <th>Cantidad</th>
-                                <th>Precio Total</th>
-                                <th>Descuento</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {response && response.books.map((book: any) => (
-                                <tr key={book.id}>
-                                    <td>{book.title}</td>
-                                    <td>{book.type === 0 ? 'Libro' : 'Novela'}</td>
-                                    <td>{Math.floor(book.unitPrice).toLocaleString('es-ES')}</td>
-                                    <td>{book.cuantity}</td>
-                                    <td>{Math.floor(book.totalPrice).toLocaleString('es-ES')}</td>
-                                    <td>{book.discount}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td>Datos Adicionales </td>
-
-                                <td>
-                                    <ul>
-                                        <li>Precio Total: {Math.floor(response.totalPrice).toLocaleString('es-ES')}</li>
-                                        <li>Tipo de Compra: {response && response.typePurchase}</li>
-                                        <li>Cantidad de Libros: {response && response.countBook}</li>
-
-                                    </ul>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                    {response.quotesInformation.map((quote, quoteIndex) => (
+                        <div key={quoteIndex}>
+                            <h3>Cotización {quoteIndex + 1}</h3>
+                            <QuoteTable quote={quote} />
+                        </div>
+                    ))}
+                    <div className="total-price">
+                        <h3>Precio total: {response.totalPrice.toLocaleString('es-ES')}</h3>
+                    </div>
                 </article>
 
             )}

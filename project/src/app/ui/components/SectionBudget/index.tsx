@@ -3,7 +3,7 @@ import { IBookModel } from '../../../core/models/book.model';
 import { IBudgetInformation } from '../../../core/models/budget-information';
 import { AppContext } from '../../../core/state/AppContext';
 import Swal from 'sweetalert2';
-import { useCalculateQuotes } from '../../../core/hooks/useCalculateBudget';
+import { useCalculateBudget } from '../../../core/hooks/useCalculateBudget';
 import FormBook from '../../forms/BookForm';
 import './style.css';
 import SelectedBooks from '../SelectedBooks';
@@ -18,7 +18,7 @@ export function SectionBudget(): ReactElement {
 
     const [idSelectedBook, idSetSelectedBook] = useState<string>('');
     const [quantityBudget, setQuantityBudget] = useState<string>('');
-    const { budget, response } = useCalculateQuotes();
+    const { budget, response } = useCalculateBudget();
 
 
     useEffect(() => {

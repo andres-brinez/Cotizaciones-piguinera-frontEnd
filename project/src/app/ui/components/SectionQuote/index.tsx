@@ -1,9 +1,9 @@
 import { ReactElement, useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../../core/state/AppContext';
 import { IBookModel } from '../../../core/models/book.model';
-import { IBookInformationQuotes } from '../../../core/models/book-quotes';
+import { IBookInformationQuotes } from '../../../core/models/book-quote';
 import Swal from 'sweetalert2';
-import { useCalculateQuotes } from '../../../core/hooks/useQuotes';
+import { useCalculateQuote } from '../../../core/hooks/useQuote';
 
 import './style.css';
 import FormBook from '../../forms/BookForm';
@@ -21,7 +21,7 @@ export function SectionQuote(): ReactElement {
     const [idSelectedBook, idSetSelectedBook] = useState<string>('');
     const [quantityBook, setQuantityBook] = useState<string>('');
 
-    const { quotes, response } = useCalculateQuotes();
+    const { quotes, response } = useCalculateQuote();
 
     useEffect(() => {
         setBooksbooksAvailable(state.books);

@@ -1,17 +1,17 @@
 import Swal from "sweetalert2";
-import { IBookInformationQuotes } from "../models/book-quotes";
+import { IBookInformationQuotes } from "../models/book-quote";
 import { bookQuotes } from "../services/quotes.service";
-import { IDataQuote } from "../models/quotes-model";
 import { useState } from "react";
+import { IBookQuotes } from "../models/book-quotes";
 
 export const useCalculateQuotes = () => {
 
-  const [quoteInformation, setQuoteInformation] = useState<IDataQuote>();
+  const [quotesInformation, setQuotesInformation] = useState<IBookQuotes>();
 
-  const quotes = (informationBooks:IBookInformationQuotes[]) =>
+  const quotes = (informationBooks: IBookInformationQuotes[][]) =>
     bookQuotes(informationBooks)
       .then((data) => {
-        setQuoteInformation(data);
+        setQuotesInformation(data);
         Swal.fire({
           icon: 'success',
           title: 'Cotización',
@@ -21,12 +21,12 @@ export const useCalculateQuotes = () => {
       .catch((error) => {
         Swal.fire({
           icon: 'error',
-          title: 'Oops...',
+          title: 'Oopsoooo...',
           text: error.message,
         });
       });
 
-return {quotes,response:quoteInformation };
+  return { quotes, response: quotesInformation };
 
 }
 

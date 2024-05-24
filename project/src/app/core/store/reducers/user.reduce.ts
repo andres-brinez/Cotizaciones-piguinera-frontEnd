@@ -11,7 +11,7 @@ const initialState: UserState = {
 
 // Definición del reducer
 export const userSlice = createSlice({
-  name: 'counter',
+  name: 'user',
   initialState,
   reducers: {
     // recibe un PayloadAction<string>, lo que significa que el payload debe ser una cadena (en este caso, el email del usuario). Luego, actualizamos la propiedad userName del estado con el valor del payload.

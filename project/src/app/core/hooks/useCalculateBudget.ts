@@ -4,11 +4,11 @@ import { bookBudget } from "../services/budget.service";
 import { IBudgetInformation } from "../models/budget-information";
 import { IDataBudget } from "../models/budget.model";
 
-export const useCalculateQuotes = () => {
+export const useCalculateBudget = () => {
 
   const [budgetInformation, setBudgetInformation] = useState<IDataBudget>();
 
-  const budget = (informationBooks:IBudgetInformation) =>
+  const budget = (informationBooks: IBudgetInformation) =>
 
     bookBudget(informationBooks)
       .then((data) => {
@@ -29,7 +29,7 @@ export const useCalculateQuotes = () => {
         });
       });
 
-return {budget,response:budgetInformation };
+  return { budget, response: budgetInformation };
 
 }
 
