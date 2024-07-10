@@ -21,7 +21,7 @@ interface IAppContext {
   state: IState;
   dispatch: any
 }
-export const AppContext = createContext<IAppContext>({ state: initialState, dispatch: null });
+
 
 interface IAppProviderProps {
   children: ReactNode;
@@ -31,6 +31,10 @@ interface IAction {
   type: string;
   payload?: any;
 }
+
+
+// Se crea el contexto
+export const AppContext = createContext<IAppContext>({ state: initialState, dispatch: null }); 
 
 export const reducer = (state: IState, action: IAction): IState => {
   switch (action.type) {
@@ -44,7 +48,7 @@ export const reducer = (state: IState, action: IAction): IState => {
       return state;
   }
 }
-
+// Se define el componente que nos va a permitir compartir  o proveer el estado
 export const AppProvider = ({ children }: IAppProviderProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
